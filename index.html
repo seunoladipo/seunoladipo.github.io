@@ -1,53 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Seun Oladipo</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seun Oladipo | Environmental Scientist & GIS Specialist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary-blue: #0077b6; --forest-green: #2d6a4f; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #333; }
+        .hero-section { background: linear-gradient(135deg, var(--primary-blue), #00b4d8); color: white; padding: 60px 0; text-align: center; }
+        .card { border: none; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); }
+        .section-title { border-left: 5px solid var(--forest-green); padding-left: 15px; margin-bottom: 25px; color: var(--forest-green); }
+        .project-link { text-decoration: none; color: inherit; }
+        .badge-gis { background-color: var(--forest-green); }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Seun Oladipo</h1>
-      <h2>Environmental Scientist</h2>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Seun Oladipo</h1>
+            <p class="lead">Environmental Scientist | GIS Specialist | Forest Researcher</p>
+            <div class="mt-4">
+                <a href="mailto:seun@example.com" class="btn btn-light btn-sm me-2"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="https://linkedin.com/in/YOUR_ID" class="btn btn-outline-light btn-sm"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
     </header>
 
-    <section id="about">
-      <h3>About Me</h3>
-      <p>I am a researcher passionate about forest adaptation strategies, climate resilience, and sustainable land use. With a strong background in GIS, spatial sciences, and environmental research, I aim to contribute to data-driven policy for biodiversity and ecosystem sustainability.</p>
-    </section>
+    <main class="container my-5">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <section class="mb-5">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="card p-4">
+                        <p class="lead">I am a climate and forest researcher dedicated to leveraging data-driven insights for biodiversity conservation and sustainable policy.</p>
+                        <p>Currently based in the Netherlands, I am specializing in spatial analysis and remote sensing to solve complex environmental challenges. My work bridges the gap between technical GIS modeling and ecological preservation, preparing me for upcoming doctoral studies in environmental sciences.</p>
+                    </div>
+                </section>
 
-    <section id="experience">
-      <h3>Experience</h3>
-      <ul>
-        <li><strong>Project Manager</strong> – Young Book Worms</li>
-        <li><strong>Research Intern</strong> – University of Groningen</li>
-        <li><strong>GIS Analyst</strong> – Environmental Research Institute</li>
-      </ul>
-    </section>
+                <section>
+                    <h2 class="section-title">Key Projects</h2>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card h-100 p-3">
+                                <h5><i class="fas fa-seedling text-success"></i> Land Suitability Model</h5>
+                                <p class="small text-muted">MSc Thesis (Gran Canaria). Developed a multi-criteria model for strategic afforestation using Erasmus Mundus research.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 p-3">
+                                <h5><i class="fas fa-chart-pie text-primary"></i> Forest Monitoring Dashboard</h5>
+                                <p class="small text-muted">Created an interactive GIS dashboard to track real-time changes in forest density and health indicators.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
-    <section id="interests">
-      <h3>Research Interests</h3>
-      <p>My interests include spatial analysis for climate resilience, forest ecosystem services, biodiversity monitoring, and socio-ecological systems.</p>
-    </section>
+            <div class="col-lg-4">
+                <section class="mb-5">
+                    <h2 class="section-title">Experience</h2>
+                    <ul class="list-group list-group-flush shadow-sm rounded">
+                        <li class="list-group-item"><strong>Project Manager</strong><br><small>Young Book Worms</small></li>
+                        <li class="list-group-item"><strong>Land Suitability Analyst</strong><br><small>Erasmus Mundus Research</small></li>
+                        <li class="list-group-item"><strong>GIS Intern</strong><br><small>Environmental Research Institute</small></li>
+                    </ul>
+                </section>
 
-    <section id="publications">
-      <h3>Publications</h3>
-      <ul>
-        <li>Oladipo, S. (under review). Land suitability analysis for afforestation in Gran Canaria. <em>Trees, Forests and People</em>.</li>
-      </ul>
-    </section>
+                <section>
+                    <h2 class="section-title">Technical Toolkit</h2>
+                    <div class="card p-3">
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge badge-gis p-2">ArcGIS Pro</span>
+                            <span class="badge badge-gis p-2">QGIS</span>
+                            <span class="badge badge-gis p-2">Remote Sensing</span>
+                            <span class="badge bg-secondary p-2">Python</span>
+                            <span class="badge bg-secondary p-2">Spatial Statistics</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
 
-    <section id="contact">
-      <h3>Contact</h3>
-      <p>Email: seun@example.com</p>
-      <p><a href="https://linkedin.com/in/seunoladipo" target="_blank">LinkedIn</a></p>
-    </section>
-
-    <footer>
-      <p>&copy; 2025 Seun Oladipo</p>
+    <footer class="text-center py-4 text-muted border-top">
+        <p>&copy; 2026 Seun Oladipo | Built with Passion for the Environment</p>
     </footer>
-  </div>
+
 </body>
 </html>
