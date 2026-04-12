@@ -1,961 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Seun Oladipo — Environmental Scientist & GIS Specialist</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-
+  <link rel="stylesheet" href="style.css"/>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --forest:      #1a3a2a;
-      --moss:        #2e5c3e;
-      --sage:        #6b8f71;
-      --mist:        #c8d8c2;
-      --cream:       #f4f1e8;
-      --parchment:   #ede8d8;
-      --earth:       #7a6848;
-      --ink:         #1c1c1a;
-      --text-body:   #3a3830;
-      --text-muted:  #7a7568;
-
-      --serif:  'Cormorant Garamond', Georgia, serif;
-      --sans:   'DM Sans', system-ui, sans-serif;
-
-      --nav-h: 64px;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text-body);
-      background: var(--cream);
-      overflow-x: hidden;
-    }
-
-    /* ─── NAV ───────────────────────────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: var(--nav-h);
-      background: rgba(244, 241, 232, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(107, 143, 113, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 clamp(1.5rem, 5vw, 4rem);
-      z-index: 100;
-    }
-
-    .nav-brand {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: var(--forest);
-      letter-spacing: 0.01em;
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--forest); }
-
-    /* ─── HERO ──────────────────────────────────────────────────────────── */
+    /* ── HOME HERO ─────────────────────────────────────── */
     .hero {
       min-height: 100vh;
-      padding: calc(var(--nav-h) + 6rem) clamp(1.5rem, 8vw, 8rem) 6rem;
+      padding-top: var(--nav-h);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
       align-items: center;
-      position: relative;
       overflow: hidden;
+      position: relative;
     }
 
-    /* Organic background shapes */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -10%;
-      right: -5%;
-      width: 55vw;
-      height: 90vh;
-      background: radial-gradient(ellipse at 60% 40%, rgba(46,92,62,0.10) 0%, transparent 70%),
-                  radial-gradient(ellipse at 80% 70%, rgba(107,143,113,0.08) 0%, transparent 60%);
-      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-      pointer-events: none;
+    .hero-left {
+      padding: 5rem clamp(1.25rem, 5vw, 4rem) 5rem clamp(1.25rem, 8vw, 8rem);
+      position: relative;
+      z-index: 2;
     }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 5%;
-      left: -8%;
-      width: 35vw;
-      height: 50vh;
-      background: radial-gradient(ellipse, rgba(200, 216, 194, 0.25) 0%, transparent 70%);
-      border-radius: 30% 70% 50% 50% / 50% 30% 70% 40%;
-      pointer-events: none;
-    }
-
-    .hero-text { position: relative; z-index: 1; }
 
     .hero-eyebrow {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 28px;
-      height: 1px;
-      background: var(--sage);
-    }
-
-    h1 {
-      font-family: var(--serif);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 300;
-      line-height: 1.05;
-      color: var(--forest);
-      letter-spacing: -0.01em;
-      margin-bottom: 1.5rem;
-    }
-
-    h1 em {
-      font-style: italic;
-      font-weight: 300;
-    }
-
-    .hero-bio {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 420px;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      padding: 0.75rem 1.75rem;
-      background: var(--forest);
-      color: var(--cream);
-      border-radius: 2px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .btn-primary:hover { background: var(--moss); transform: translateY(-1px); }
-
-    .btn-secondary {
-      display: inline-block;
-      padding: 0.75rem 1.75rem;
-      background: transparent;
-      color: var(--forest);
-      border: 1px solid rgba(26, 58, 42, 0.3);
-      border-radius: 2px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      transition: border-color 0.2s, background 0.2s, transform 0.15s;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--forest);
-      background: rgba(26, 58, 42, 0.04);
-      transform: translateY(-1px);
-    }
-
-    /* Hero graphic panel */
-    .hero-graphic {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-card {
-      width: 100%;
-      max-width: 380px;
-      background: var(--parchment);
-      border: 1px solid rgba(107,143,113,0.25);
-      border-radius: 4px;
-      padding: 2.5rem;
-      position: relative;
-    }
-
-    .hero-card::before {
-      content: '';
-      position: absolute;
-      top: -12px;
-      left: -12px;
-      right: 12px;
-      bottom: -12px;
-      border: 1px solid rgba(107,143,113,0.15);
-      border-radius: 4px;
-      z-index: -1;
-    }
-
-    .card-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 1.5rem;
-    }
-
-    .interest-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-
-    .interest-list li {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-      color: var(--text-body);
-    }
-
-    .interest-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--sage);
-      flex-shrink: 0;
-    }
-
-    .card-divider {
-      height: 1px;
-      background: rgba(107,143,113,0.2);
-      margin: 1.75rem 0;
-    }
-
-    .card-stat {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-
-    .stat-item {}
-    .stat-number {
-      font-family: var(--serif);
-      font-size: 2rem;
-      font-weight: 300;
-      color: var(--forest);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
-    }
-
-    /* ─── SECTION COMMON ────────────────────────────────────────────────── */
-    section {
-      padding: 7rem clamp(1.5rem, 8vw, 8rem);
-    }
-
-    .section-header {
-      margin-bottom: 4rem;
-    }
-
-    .section-number {
-      font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--sage);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1.75rem;
     }
+    .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--sage); }
 
-    .section-number::after {
-      content: '';
-      display: block;
-      height: 1px;
-      width: 36px;
-      background: var(--sage);
-    }
+    .hero h1 { margin-bottom: 1.5rem; }
 
-    h2 {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      font-weight: 300;
-      color: var(--forest);
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-    }
-
-    h2 em { font-style: italic; }
-
-    /* ─── ABOUT ─────────────────────────────────────────────────────────── */
-    #about { background: var(--parchment); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .about-text p {
+    .hero-sub {
       font-size: 1.05rem;
-      color: var(--text-body);
+      color: var(--muted);
+      max-width: 440px;
       line-height: 1.8;
-      margin-bottom: 1.25rem;
+      margin-bottom: 2.75rem;
     }
 
-    .about-text p:last-child { margin-bottom: 0; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-    .pull-quote {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--forest);
-      line-height: 1.4;
-      border-left: 2px solid var(--sage);
-      padding-left: 1.5rem;
-      margin: 2.5rem 0;
-    }
-
-    .about-sidebar {}
-
-    .sidebar-block {
-      background: var(--cream);
-      border: 1px solid rgba(107,143,113,0.2);
-      border-radius: 3px;
-      padding: 1.75rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .sidebar-block-title {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 1rem;
-    }
-
-    .tag-list {
+    .hero-badges {
+      margin-top: 3.5rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
 
-    .tag {
-      display: inline-block;
-      padding: 0.3rem 0.8rem;
-      background: rgba(107,143,113,0.12);
-      color: var(--moss);
-      border-radius: 2px;
-      font-size: 0.8rem;
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
       font-weight: 400;
+      padding: 0.3rem 0.8rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--muted);
     }
 
-    /* ─── RESEARCH / PROJECTS ───────────────────────────────────────────── */
-    #research { background: var(--cream); }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
+    .badge-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--sage);
     }
 
-    .project-card {
+    /* ── HERO RIGHT ─────────────────────────────────────── */
+    .hero-right {
+      height: 100vh;
       background: var(--parchment);
-      border: 1px solid rgba(107,143,113,0.2);
-      border-radius: 3px;
-      padding: 2.25rem;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 2.5rem;
       position: relative;
       overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s;
     }
 
-    .project-card::before {
+    .hero-right::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 3px;
-      height: 0;
-      background: var(--sage);
-      transition: height 0.3s;
+      bottom: -15%;
+      right: -15%;
+      width: 55%;
+      height: 55%;
+      background: radial-gradient(ellipse, rgba(107,143,113,0.18) 0%, transparent 70%);
+      border-radius: 50%;
     }
 
-    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,58,42,0.08); }
-    .project-card:hover::before { height: 100%; }
-
-    .project-icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(107,143,113,0.12);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 380px;
       margin-bottom: 1.5rem;
     }
 
-    .project-icon svg { width: 20px; height: 20px; stroke: var(--sage); fill: none; stroke-width: 1.5; }
+    .stat-box {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1.5rem 1.25rem;
+    }
 
-    .project-card h3 {
+    .stat-num {
       font-family: var(--serif);
-      font-size: 1.35rem;
-      font-weight: 400;
+      font-size: 2.4rem;
+      font-weight: 300;
       color: var(--forest);
-      line-height: 1.2;
-      margin-bottom: 0.75rem;
+      line-height: 1;
+      margin-bottom: 0.35rem;
     }
 
-    .project-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.7;
+    .stat-lbl {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.4;
     }
 
-    .project-meta {
-      margin-top: 1.5rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid rgba(107,143,113,0.15);
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+    .recent-card {
+      width: 100%;
+      max-width: 380px;
+      background: var(--forest);
+      border-radius: 3px;
+      padding: 1.5rem 1.75rem;
+      color: var(--cream);
+      position: relative;
+      z-index: 1;
     }
 
-    /* ─── EXPERIENCE ────────────────────────────────────────────────────── */
-    #experience { background: var(--forest); }
-
-    #experience .section-number { color: var(--mist); }
-    #experience .section-number::after { background: var(--mist); }
-    #experience h2 { color: var(--cream); }
-
-    .timeline {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem 5rem;
-      margin-top: 4rem;
-    }
-
-    .timeline-item {}
-
-    .timeline-category {
+    .recent-label {
       font-size: 0.7rem;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 0.75rem;
+      color: var(--mist);
+      margin-bottom: 0.6rem;
     }
 
-    .timeline-item h3 {
+    .recent-title {
       font-family: var(--serif);
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: var(--cream);
-      line-height: 1.2;
-      margin-bottom: 0.75rem;
-    }
-
-    .timeline-item p {
-      font-size: 0.9rem;
-      color: rgba(200, 216, 194, 0.75);
-      line-height: 1.7;
-    }
-
-    .timeline-divider {
-      height: 1px;
-      background: rgba(107,143,113,0.25);
-      margin-top: 1.5rem;
-    }
-
-    /* ─── CONTACT ───────────────────────────────────────────────────────── */
-    #contact { background: var(--parchment); }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .contact-intro {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-      margin-top: 1.5rem;
-    }
-
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .contact-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 1.5rem;
-      background: var(--cream);
-      border: 1px solid rgba(107,143,113,0.2);
-      border-radius: 3px;
-      text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .contact-item:hover {
-      border-color: var(--sage);
-      transform: translateX(4px);
-    }
-
-    .contact-item-icon {
-      width: 36px;
-      height: 36px;
-      background: rgba(107,143,113,0.12);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .contact-item-icon svg { width: 16px; height: 16px; stroke: var(--sage); fill: none; stroke-width: 1.75; }
-
-    .contact-item-text {}
-    .contact-item-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
-    .contact-item-value { font-size: 0.95rem; color: var(--forest); margin-top: 0.1rem; }
-
-    /* ─── FOOTER ────────────────────────────────────────────────────────── */
-    footer {
-      background: var(--ink);
-      padding: 2.5rem clamp(1.5rem, 8vw, 8rem);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-brand {
-      font-family: var(--serif);
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 300;
-      color: rgba(244, 241, 232, 0.6);
+      color: var(--cream);
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
     }
 
-    .footer-copy {
-      font-size: 0.78rem;
-      color: rgba(244, 241, 232, 0.35);
+    .recent-meta { font-size: 0.78rem; color: rgba(200,216,194,0.65); }
+
+    /* ── INTRO STRIP ─────────────────────────────────────── */
+    .intro-strip {
+      background: var(--forest);
+      padding: 4rem 0;
     }
 
-    /* ─── FADE IN ────────────────────────────────────────────────────────── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+    .intro-strip-inner {
+      max-width: var(--page);
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 5vw, 4rem);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
     }
 
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
+    .intro-item {
+      padding: 1.5rem 2.5rem;
+      border-right: 1px solid rgba(107,143,113,0.25);
+    }
+    .intro-item:first-child { padding-left: 0; }
+    .intro-item:last-child { border-right: none; }
+
+    .intro-item-num {
+      font-family: var(--serif);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--mist);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .intro-item-label {
+      font-size: 0.82rem;
+      color: rgba(200,216,194,0.6);
     }
 
-    /* ─── RESPONSIVE ────────────────────────────────────────────────────── */
-    @media (max-width: 860px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: calc(var(--nav-h) + 3.5rem);
-      }
+    /* ── HIGHLIGHTS ─────────────────────────────────────── */
+    .highlights { background: var(--cream); }
 
-      .hero-graphic { display: none; }
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
 
-      .about-grid,
-      .contact-grid,
-      .timeline {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
+    .highlight-card {
+      background: var(--parchment);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2rem;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .highlight-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,58,42,0.08); }
 
-      .nav-links { display: none; }
+    .highlight-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--sage);
+      transition: width 0.3s;
+    }
+    .highlight-card:hover::after { width: 100%; }
+
+    .hc-icon {
+      width: 40px; height: 40px;
+      background: var(--sage-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .hc-icon svg { width: 18px; height: 18px; stroke: var(--sage); fill: none; stroke-width: 1.6; }
+
+    .hc-section {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem;
+    }
+    .hc-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; color: var(--forest); line-height: 1.25; margin-bottom: 0.65rem; }
+    .hc-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+
+    .hc-arrow {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; font-weight: 500; color: var(--sage);
+      margin-top: 1.25rem; text-decoration: none;
+    }
+    .hc-arrow svg { width: 14px; height: 14px; stroke: var(--sage); fill: none; stroke-width: 2; }
+
+    /* ── PUBLICATION PREVIEW ─────────────────────────────── */
+    .pub-preview { background: var(--parchment); }
+    .pub-preview-inner { max-width: var(--page); margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 4rem); }
+
+    .pub-list { list-style: none; margin-top: 2.5rem; }
+    .pub-list li {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 0;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .pub-list li:last-child { border-bottom: 1px solid var(--border); }
+
+    .pub-year { font-family: var(--serif); font-size: 1.1rem; font-weight: 300; color: var(--sage); min-width: 48px; }
+    .pub-title { font-size: 0.9rem; color: var(--text); line-height: 1.5; }
+    .pub-journal { font-size: 0.78rem; color: var(--muted); }
+    .pub-link { font-size: 0.78rem; color: var(--sage); text-decoration: none; white-space: nowrap; }
+    .pub-link:hover { color: var(--forest); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: calc(var(--nav-h) + 3rem) clamp(1.25rem, 5vw, 4rem) 4rem; }
+      .intro-strip-inner { grid-template-columns: 1fr; }
+      .intro-item { border-right: none; border-bottom: 1px solid rgba(107,143,113,0.25); padding: 1.25rem 0; }
+      .highlights-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-brand">Seun Oladipo</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow fade">PhD Candidate · University of Virginia</div>
+    <h1 class="fade delay-1">Environmental<br>Scientist &amp;<br><em>GIS Specialist</em></h1>
+    <p class="hero-sub fade delay-2">
+      Researching how urban green spaces, forests, and island ecosystems
+      can be optimised for biodiversity, carbon sequestration, and
+      resilience under a changing climate.
+    </p>
+    <div class="hero-ctas fade delay-3">
+      <a href="research.html" class="btn btn-dark">View Research</a>
+      <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-badges fade">
+      <span class="badge"><span class="badge-dot"></span> Erasmus Mundus Scholar</span>
+      <span class="badge"><span class="badge-dot"></span> 2 Peer-reviewed Publications</span>
+      <span class="badge"><span class="badge-dot"></span> ESRI · Google · FAO Certified</span>
+      <span class="badge"><span class="badge-dot"></span> UVA · Groningen · Las Palmas</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stat-grid fade">
+      <div class="stat-box">
+        <div class="stat-num">PhD</div>
+        <div class="stat-lbl">Candidate, Env. Science — UVA</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2</div>
+        <div class="stat-lbl">Peer-reviewed Journal Publications</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">3+</div>
+        <div class="stat-lbl">Countries of Research Experience</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">10+</div>
+        <div class="stat-lbl">Years in Environmental Science</div>
+      </div>
+    </div>
+    <div class="recent-card fade delay-1">
+      <div class="recent-label">Latest Research</div>
+      <div class="recent-title">Prioritization of Ecosystem Services in Urban Green Spaces</div>
+      <div class="recent-meta">University of Virginia · 2025 – Present</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="intro-strip">
+  <div class="intro-strip-inner">
+    <div class="intro-item fade">
+      <div class="intro-item-num">4,000+</div>
+      <div class="intro-item-label">Missing places added to Google Maps across 3 continents</div>
+    </div>
+    <div class="intro-item fade delay-1">
+      <div class="intro-item-num">5,000+</div>
+      <div class="intro-item-label">Books donated to remote communities across Nigeria</div>
+    </div>
+    <div class="intro-item fade delay-2">
+      <div class="intro-item-num">€10K+</div>
+      <div class="intro-item-label">In competitive scholarships and research grants awarded</div>
+    </div>
+  </div>
+</div>
+
+<!-- HIGHLIGHTS -->
+<section class="highlights page-wrap">
+  <div class="section-eyebrow fade">Explore</div>
+  <h2 class="fade">What I do</h2>
+
+  <div class="highlights-grid">
+    <a href="research.html" class="highlight-card fade">
+      <div class="hc-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="hc-section">Research</div>
+      <div class="hc-title">Ecosystem Services & Climate Adaptation</div>
+      <div class="hc-desc">Peer-reviewed research on urban green spaces, CO₂ sinks, forest adaptation, and biodiversity trade-offs across Spain, the Netherlands, and the US.</div>
+      <div class="hc-arrow">View research <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="gis.html" class="highlight-card fade delay-1">
+      <div class="hc-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <div class="hc-section">GIS Projects</div>
+      <div class="hc-title">Spatial Analysis & Remote Sensing</div>
+      <div class="hc-desc">GIS-based modelling, land suitability analysis, phytotoponym mapping, sawmill distribution, and deforestation tracking using ArcGIS, QGIS, and Google Earth Engine.</div>
+      <div class="hc-arrow">Explore maps <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+
+    <a href="blog.html" class="highlight-card fade delay-2">
+      <div class="hc-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+      </div>
+      <div class="hc-section">Blog & Writing</div>
+      <div class="hc-title">Opinion & Environmental Commentary</div>
+      <div class="hc-desc">Opinion editorials and essays on COP28 climate adaptation, food security, sustainable transformation strategies, and island sustainability.</div>
+      <div class="hc-arrow">Read blog <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </a>
+  </div>
+</section>
+
+<!-- PUBLICATION PREVIEW -->
+<section class="pub-preview">
+  <div class="pub-preview-inner">
+    <div class="section-eyebrow fade">Publications</div>
+    <h2 class="fade">Selected <em>work</em></h2>
+    <ul class="pub-list">
+      <li class="fade">
+        <span class="pub-year">2024</span>
+        <div>
+          <div class="pub-title">Methodology for Selecting Potential CO₂ Sink in Macaronesia Island: The Case of Gran Canaria</div>
+          <div class="pub-journal">Trees, Forests and People — Q1 Journal</div>
+        </div>
+        <a href="research.html" class="pub-link">→ View</a>
+      </li>
+      <li class="fade delay-1">
+        <span class="pub-year">2024</span>
+        <div>
+          <div class="pub-title">Assessment of Geospatial Distribution of Sawmills in Ife-East Local Government Area, Osun State, Nigeria</div>
+          <div class="pub-journal">Journal of Applied Sciences and Environmental Management</div>
+        </div>
+        <a href="research.html" class="pub-link">→ View</a>
+      </li>
+      <li class="fade delay-2">
+        <span class="pub-year">2023</span>
+        <div>
+          <div class="pub-title">Biofuels as a Key Renewable Energy Source: Life Cycle Assessment Studies in South Africa</div>
+          <div class="pub-journal">Co-authored review paper</div>
+        </div>
+        <a href="research.html" class="pub-link">→ View</a>
+      </li>
     </ul>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-text fade-in">
-      <span class="hero-eyebrow">Environmental Scientist &amp; GIS Specialist</span>
-      <h1>Where <em>science</em><br>meets landscape</h1>
-      <p class="hero-bio">
-        Researching how forests adapt, ecosystems thrive, and landscapes
-        respond to climate change — using spatial science and GIS to
-        turn complex environments into actionable insight.
-      </p>
-      <div class="hero-ctas">
-        <a href="#research" class="btn-primary">View Research</a>
-        <a href="#contact" class="btn-secondary">Get in Touch</a>
-      </div>
+    <div style="margin-top: 2rem;" class="fade">
+      <a href="research.html" class="btn btn-outline">View all publications</a>
     </div>
+  </div>
+</section>
 
-    <div class="hero-graphic fade-in" style="transition-delay: 0.2s;">
-      <div class="hero-card">
-        <p class="card-label">Research Focus</p>
-        <ul class="interest-list">
-          <li><span class="interest-dot"></span>Forest adaptation &amp; climate resilience</li>
-          <li><span class="interest-dot"></span>Biodiversity under environmental change</li>
-          <li><span class="interest-dot"></span>Ecosystem services &amp; trade-off analysis</li>
-          <li><span class="interest-dot"></span>GIS &amp; remote sensing for environmental modelling</li>
-        </ul>
-        <div class="card-divider"></div>
-        <div class="card-stat">
-          <div class="stat-item">
-            <div class="stat-number">2</div>
-            <div class="stat-label">Graduate Degrees</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">3+</div>
-            <div class="stat-label">Research Projects</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">GIS</div>
-            <div class="stat-label">Core Expertise</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">Open</div>
-            <div class="stat-label">to PhD Opportunities</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-header fade-in">
-      <div class="section-number">01</div>
-      <h2>About <em>me</em></h2>
-    </div>
-
-    <div class="about-grid">
-      <div class="about-text fade-in">
-        <p>
-          I am an environmental scientist with a strong background in forestry, spatial science,
-          and GIS-based environmental analysis. My academic and professional work focuses on
-          understanding how forest and landscape management strategies can enhance biodiversity,
-          ecosystem services, and resilience under climate change.
-        </p>
-        <blockquote class="pull-quote">
-          "Forests are among our most complex natural systems — and our most important allies
-          against a changing climate."
-        </blockquote>
-        <p>
-          My interdisciplinary training spans ecology, geospatial modelling, and environmental
-          policy, allowing me to bridge the gap between scientific research and practical
-          conservation strategies. I am actively seeking PhD opportunities and research
-          collaborations that push the frontier of forest science.
-        </p>
-      </div>
-
-      <div class="about-sidebar fade-in" style="transition-delay: 0.15s;">
-        <div class="sidebar-block">
-          <p class="sidebar-block-title">Education</p>
-          <p style="font-size:0.9rem; color: var(--text-body); margin-bottom: 0.5rem;">
-            <strong style="font-weight:500;">MSc Spatial Science</strong><br>
-            <span style="color: var(--text-muted); font-size: 0.82rem;">Island and Sustainability</span>
-          </p>
-          <p style="font-size:0.9rem; color: var(--text-body);">
-            <strong style="font-weight:500;">B.Agric.Tech Forestry</strong><br>
-            <span style="color: var(--text-muted); font-size: 0.82rem;">Forestry &amp; Wood Technology</span>
-          </p>
-        </div>
-
-        <div class="sidebar-block">
-          <p class="sidebar-block-title">Technical Skills</p>
-          <div class="tag-list">
-            <span class="tag">GIS Modelling</span>
-            <span class="tag">Remote Sensing</span>
-            <span class="tag">ArcGIS / QGIS</span>
-            <span class="tag">Spatial Analysis</span>
-            <span class="tag">R / Python</span>
-            <span class="tag">Ecological Surveys</span>
-            <span class="tag">Land Suitability</span>
-            <span class="tag">Climate Data</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RESEARCH & PROJECTS -->
-  <section id="research">
-    <div class="section-header fade-in">
-      <div class="section-number">02</div>
-      <h2>Selected <em>projects</em></h2>
-    </div>
-
-    <div class="projects-grid">
-
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
-        </div>
-        <h3>Land Suitability Analysis for Afforestation</h3>
-        <p>
-          Developed a GIS-based land suitability model for afforestation and reforestation
-          in Gran Canaria, Spain — assessing ecological and climatic constraints to support
-          climate mitigation strategies.
-        </p>
-        <div class="project-meta">
-          <span class="tag">GIS Modelling</span>
-          <span class="tag">Spain</span>
-          <span class="tag">Climate Mitigation</span>
-        </div>
-      </div>
-
-      <div class="project-card fade-in" style="transition-delay: 0.1s;">
-        <div class="project-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
-        </div>
-        <h3>Forest Adaptation Trade-offs</h3>
-        <p>
-          Evaluated biodiversity and ecosystem service trade-offs across alternative forest
-          adaptation approaches under projected climate scenarios, contributing to evidence-based
-          forestry policy.
-        </p>
-        <div class="project-meta">
-          <span class="tag">Biodiversity</span>
-          <span class="tag">Ecosystem Services</span>
-          <span class="tag">Climate Scenarios</span>
-        </div>
-      </div>
-
-      <div class="project-card fade-in" style="transition-delay: 0.2s;">
-        <div class="project-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        </div>
-        <h3>Community Mapping &amp; Tree Planting</h3>
-        <p>
-          Led participatory community mapping projects and contributed to large-scale tree
-          planting initiatives, connecting grassroots conservation with spatial data collection
-          and environmental education.
-        </p>
-        <div class="project-meta">
-          <span class="tag">Community</span>
-          <span class="tag">Field Work</span>
-          <span class="tag">Conservation</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-header fade-in">
-      <div class="section-number">03</div>
-      <h2>Experience &amp; <em>achievements</em></h2>
-    </div>
-
-    <div class="timeline">
-
-      <div class="timeline-item fade-in">
-        <p class="timeline-category">Academia</p>
-        <h3>Interdisciplinary Graduate Training</h3>
-        <p>
-          MSc in Spatial Science (Island and Sustainability) combining ecology,
-          GIS, and environmental modelling — with field research across
-          island ecosystems and data-driven landscape analysis.
-        </p>
-        <div class="timeline-divider"></div>
-      </div>
-
-      <div class="timeline-item fade-in" style="transition-delay: 0.1s;">
-        <p class="timeline-category">Undergraduate Research</p>
-        <h3>Forestry &amp; Wood Technology</h3>
-        <p>
-          B.Agric.Tech in Forestry, building a foundation in tropical forest
-          ecology, silviculture, and resource management — with applied
-          fieldwork across Nigerian forest ecosystems.
-        </p>
-        <div class="timeline-divider"></div>
-      </div>
-
-      <div class="timeline-item fade-in" style="transition-delay: 0.2s;">
-        <p class="timeline-category">Leadership</p>
-        <h3>Drug-Free Club Founder</h3>
-        <p>
-          Established a Drug-Free Club in a Nigerian technical college,
-          demonstrating early leadership and a commitment to community
-          wellbeing and youth development.
-        </p>
-        <div class="timeline-divider"></div>
-      </div>
-
-      <div class="timeline-item fade-in" style="transition-delay: 0.3s;">
-        <p class="timeline-category">Community</p>
-        <h3>Food Security Initiative</h3>
-        <p>
-          Co-sponsored a student-led food security initiative, connecting
-          environmental science principles with practical community action
-          and sustainable resource management.
-        </p>
-        <div class="timeline-divider"></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-header fade-in">
-      <div class="section-number">04</div>
-      <h2>Let's <em>connect</em></h2>
-    </div>
-
-    <div class="contact-grid">
-      <div class="fade-in">
-        <p class="contact-intro">
-          I am open to research collaborations, PhD opportunities, and
-          professional engagements in environmental science, GIS, and
-          forest ecology. If you are working on something meaningful,
-          I would love to hear from you.
-        </p>
-      </div>
-
-      <div class="contact-details fade-in" style="transition-delay: 0.1s;">
-        <a href="mailto:seunoladipo@gmail.com" class="contact-item">
-          <div class="contact-item-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div class="contact-item-text">
-            <div class="contact-item-label">Email</div>
-            <div class="contact-item-value">seunoladipo@gmail.com</div>
-          </div>
-        </a>
-
-        <a href="https://github.com/seunoladipo" target="_blank" rel="noopener" class="contact-item">
-          <div class="contact-item-icon">
-            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          </div>
-          <div class="contact-item-text">
-            <div class="contact-item-label">GitHub</div>
-            <div class="contact-item-value">github.com/seunoladipo</div>
-          </div>
-        </a>
-
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="contact-item">
-          <div class="contact-item-icon">
-            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </div>
-          <div class="contact-item-text">
-            <div class="contact-item-label">LinkedIn</div>
-            <div class="contact-item-value">Connect on LinkedIn</div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-brand">Seun Oladipo</span>
-    <span class="footer-copy">&copy; 2026 — Environmental Scientist &amp; GIS Specialist</span>
-  </footer>
-
-  <script>
-    // Fade-in on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // Smooth active nav highlight
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => {
-            link.style.color = '';
-            if (link.getAttribute('href') === '#' + entry.target.id) {
-              link.style.color = 'var(--forest)';
-            }
-          });
-        }
-      });
-    }, { threshold: 0.4 });
-
-    sections.forEach(s => navObserver.observe(s));
-  </script>
-
+<script src="shared.js"></script>
 </body>
 </html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Seun Oladipo</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .about-body { background: var(--cream); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 4rem;
+    }
+
+    .about-text p {
+      font-size: 1.02rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+
+    .pull-quote {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--forest);
+      line-height: 1.4;
+      border-left: 2px solid var(--sage);
+      padding: 0.25rem 0 0.25rem 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    /* sidebar */
+    .sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .sidebar-card {
+      background: var(--parchment);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1.75rem;
+    }
+
+    .sidebar-card-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.1rem;
+    }
+
+    .edu-item { margin-bottom: 1.1rem; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-degree { font-size: 0.9rem; font-weight: 500; color: var(--forest); }
+    .edu-school { font-size: 0.82rem; color: var(--muted); margin-top: 0.1rem; }
+    .edu-year { font-size: 0.75rem; color: var(--sage); margin-top: 0.1rem; }
+
+    .lang-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .lang-item:last-child { border-bottom: none; }
+    .lang-name { color: var(--text); }
+    .lang-level { font-size: 0.75rem; color: var(--muted); }
+
+    .affil-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .affil-list li { font-size: 0.82rem; color: var(--text); line-height: 1.45; }
+    .affil-list li span { color: var(--muted); }
+
+    /* skills section */
+    .skills-section { background: var(--parchment); padding: 6rem 0; }
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 3rem; }
+
+    .skill-group {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1.5rem;
+    }
+
+    .skill-group-title {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--sage); margin-bottom: 1rem;
+    }
+
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .skill-list li { font-size: 0.85rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+    .skill-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--sage); flex-shrink: 0; }
+
+    /* awards */
+    .awards-section { background: var(--cream); padding: 6rem 0; }
+    .awards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 3rem; }
+
+    .award-card {
+      background: var(--parchment);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1.75rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .award-year {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--sage);
+      line-height: 1;
+    }
+
+    .award-title { font-size: 0.92rem; font-weight: 500; color: var(--forest); margin-bottom: 0.3rem; }
+    .award-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* certs */
+    .certs-section { background: var(--forest); padding: 6rem 0; }
+    .certs-section .section-eyebrow { color: var(--mist); }
+    .certs-section .section-eyebrow::after { background: var(--mist); }
+    .certs-section h2 { color: var(--cream); }
+    .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; }
+
+    .cert-pill {
+      background: rgba(107,143,113,0.12);
+      border: 1px solid rgba(107,143,113,0.25);
+      border-radius: 2px;
+      padding: 0.85rem 1rem;
+    }
+    .cert-name { font-size: 0.82rem; color: var(--cream); font-weight: 400; }
+    .cert-org { font-size: 0.72rem; color: rgba(200,216,194,0.6); margin-top: 0.2rem; }
+
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .awards-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body class="about-body">
+
+<!-- PAGE HEADER -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-eyebrow fade">About me</div>
+    <h1 class="fade delay-1">Scientist. Mapper.<br><em>Changemaker.</em></h1>
+  </div>
+</div>
+
+<!-- MAIN ABOUT -->
+<section>
+  <div class="page-wrap">
+    <div class="about-grid">
+      <div class="about-text fade">
+        <p>
+          I am an environmental scientist and PhD candidate at the University of Virginia,
+          where my research focuses on how urban green spaces can be optimally sited and
+          managed to deliver maximum ecosystem services — from carbon sequestration and
+          stormwater management to biodiversity support and urban cooling.
+        </p>
+        <p>
+          My academic journey has taken me across four continents. I completed a fully
+          funded Erasmus Mundus MSc in Spatial Sciences (Islands and Sustainability)
+          jointly at the University of Groningen in the Netherlands and the University
+          of Las Palmas in Gran Canaria, Spain — where my thesis on CO₂ sink
+          identification in Macaronesian island landscapes was published in a Q1
+          journal within three months of completion.
+        </p>
+        <blockquote class="pull-quote">
+          "Forests and green spaces are not merely scenery — they are critical
+          infrastructure for a liveable planet."
+        </blockquote>
+        <p>
+          Before my PhD, I worked as a Geospatial Researcher at the Institute of
+          Oceanography and Global Change in Gran Canaria, a Research Scientist at
+          the Forestry Research Institute of Nigeria, and a GIS Specialist intern
+          at the Centre for Space Research and Application (CESRA) in Akure.
+          Across all these roles, spatial science has been the thread connecting
+          ecology, policy, and practice.
+        </p>
+        <p>
+          Beyond research, I care deeply about community — from co-founding literacy
+          programmes during COVID-19 lockdowns to serving as a Google Local Guide
+          (Level 8) who has added over 4,000 missing places and 200 roads across
+          Africa, Asia, and Europe to improve how communities are seen on the map.
+        </p>
+        <p>
+          I am fluent in English, with intermediate proficiency in Spanish and Dutch —
+          a reflection of the international nature of my academic and professional
+          career. I am open to research collaborations, speaking engagements, and
+          PhD co-supervision opportunities.
+        </p>
+        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="contact.html" class="btn btn-dark">Get in Touch</a>
+          <a href="https://www.linkedin.com/in/seun-oladipo" target="_blank" class="btn btn-outline">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="sidebar fade delay-1">
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Education</div>
+          <div class="edu-item">
+            <div class="edu-degree">PhD Environmental Science</div>
+            <div class="edu-school">University of Virginia, USA</div>
+            <div class="edu-year">Aug 2025 – May 2030</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">MSc Spatial Sciences</div>
+            <div class="edu-school">University of Groningen (Erasmus Mundus) &amp; University of Las Palmas (with distinction)</div>
+            <div class="edu-year">Sep 2022 – Jul 2024</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">B.Tech Forestry &amp; Wood Technology</div>
+            <div class="edu-school">Federal University of Technology, Akure, Nigeria</div>
+            <div class="edu-year">Dec 2014 – Dec 2019</div>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Languages</div>
+          <div class="lang-item">
+            <span class="lang-name">English</span>
+            <span class="lang-level">Native</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Spanish</span>
+            <span class="lang-level">Intermediate</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Dutch</span>
+            <span class="lang-level">Intermediate</span>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Professional Affiliations</div>
+          <ul class="affil-list">
+            <li>Project Management Institute <span>· Netherlands Chapter</span></li>
+            <li>FAO Green Cities Initiative <span>· Community of Practice</span></li>
+            <li>Society of American Foresters</li>
+            <li>Commonwealth Forestry Association</li>
+            <li>Young Professionals for Agricultural Development</li>
+            <li>International Forestry Students' Association</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section">
+  <div class="page-wrap">
+    <div class="section-eyebrow fade">Capabilities</div>
+    <h2 class="fade">Skills &amp; <em>tools</em></h2>
+    <div class="skills-grid">
+      <div class="skill-group fade">
+        <div class="skill-group-title">GIS &amp; Remote Sensing</div>
+        <ul class="skill-list">
+          <li>ArcGIS Pro &amp; ArcMap</li>
+          <li>QGIS</li>
+          <li>Google Earth Engine</li>
+          <li>ERDAS Imagine</li>
+          <li>SNAP</li>
+          <li>UAV / Drone Imagery</li>
+        </ul>
+      </div>
+      <div class="skill-group fade delay-1">
+        <div class="skill-group-title">Programming</div>
+        <ul class="skill-list">
+          <li>Python (Intermediate)</li>
+          <li>R (Intermediate)</li>
+          <li>SQL (Intermediate)</li>
+          <li>Google Earth Engine JS</li>
+          <li>SPSS</li>
+          <li>Tableau</li>
+        </ul>
+      </div>
+      <div class="skill-group fade delay-2">
+        <div class="skill-group-title">Research Methods</div>
+        <ul class="skill-list">
+          <li>Systematic Literature Review</li>
+          <li>Land Suitability Analysis</li>
+          <li>Spatial Modelling</li>
+          <li>Focus Group Facilitation</li>
+          <li>Atlas.ti (Qualitative)</li>
+          <li>Field Surveys</li>
+        </ul>
+      </div>
+      <div class="skill-group fade delay-3">
+        <div class="skill-group-title">Professional</div>
+        <ul class="skill-list">
+          <li>Project Management</li>
+          <li>Stakeholder Engagement</li>
+          <li>Science Communication</li>
+          <li>Technical Report Writing</li>
+          <li>Photography</li>
+          <li>Strategic Planning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="awards-section">
+  <div class="page-wrap">
+    <div class="section-eyebrow fade">Recognition</div>
+    <h2 class="fade">Honours &amp; <em>awards</em></h2>
+    <div class="awards-grid">
+      <div class="award-card fade">
+        <div class="award-year">2024</div>
+        <div>
+          <div class="award-title">Hong Kong Polytechnic University Research Summer School Grant</div>
+          <div class="award-desc">Received up to HK$10,000 for attending the 2024 Summer School on interdisciplinary environmental research.</div>
+        </div>
+      </div>
+      <div class="award-card fade delay-1">
+        <div class="award-year">2024</div>
+        <div>
+          <div class="award-title">Clean Energy for EU Islands Forum Travel Grant</div>
+          <div class="award-desc">Received up to €650 to attend the Clean Energy for EU Islands Forum in Pantelleria, Italy.</div>
+        </div>
+      </div>
+      <div class="award-card fade delay-2">
+        <div class="award-year">2022</div>
+        <div>
+          <div class="award-title">Erasmus Mundus Scholarship</div>
+          <div class="award-desc">Fully funded scholarship for the MSc programme in Islands and Sustainability (Spatial Sciences), covering tuition, living expenses, and travel.</div>
+        </div>
+      </div>
+      <div class="award-card fade delay-3">
+        <div class="award-year">2016</div>
+        <div>
+          <div class="award-title">Dean's List Award — FUTA</div>
+          <div class="award-desc">Recognized on the Dean's List for achieving a GPA of 4.53/5.0 across two consecutive academic sessions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-section">
+  <div class="page-wrap">
+    <div class="section-eyebrow fade">Credentials</div>
+    <h2 class="fade">Selected <em>certifications</em></h2>
+    <div class="cert-grid">
+      <div class="cert-pill fade"><div class="cert-name">Google Data Analytics Professional Certificate</div><div class="cert-org">Google / Coursera · 2022</div></div>
+      <div class="cert-pill fade delay-1"><div class="cert-name">GIS for Climate Action</div><div class="cert-org">ESRI · 2023</div></div>
+      <div class="cert-pill fade delay-2"><div class="cert-name">Nature-based Solutions for Disaster &amp; Climate Resilience</div><div class="cert-org">UNEP · 2024</div></div>
+      <div class="cert-pill fade"><div class="cert-name">Earth Observations of Blue Carbon Ecosystems</div><div class="cert-org">NASA · 2024</div></div>
+      <div class="cert-pill fade delay-1"><div class="cert-name">Using Land-cover Information to Monitor SDG Progress</div><div class="cert-org">FAO · 2024</div></div>
+      <div class="cert-pill fade delay-2"><div class="cert-name">Resilient Rivers: Watershed-based Forest Management</div><div class="cert-org">FAO · 2024</div></div>
+      <div class="cert-pill fade"><div class="cert-name">Python for Everyone</div><div class="cert-org">ESRI · 2020</div></div>
+      <div class="cert-pill fade delay-1"><div class="cert-name">Introduction to Probability and Data with R</div><div class="cert-org">Duke University · 2022</div></div>
+      <div class="cert-pill fade delay-2"><div class="cert-name">Foundations of Data Science</div><div class="cert-org">Google · 2023</div></div>
+    </div>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+</body>
+</html>

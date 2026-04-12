@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GIS Projects — Seun Oladipo</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background: var(--cream); }
+
+    /* project grid */
+    .gis-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .gis-card {
+      background: var(--parchment);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .gis-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,58,42,0.09); }
+
+    .gis-card-visual {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      background: var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* SVG map-style thumbnail backgrounds */
+    .gis-bg-1 { background: linear-gradient(135deg, #1a3a2a 0%, #2e5c3e 50%, #1a3a2a 100%); }
+    .gis-bg-2 { background: linear-gradient(135deg, #2c3e50 0%, #1a3a2a 60%, #4a6741 100%); }
+    .gis-bg-3 { background: linear-gradient(135deg, #3d2b1f 0%, #7a6848 60%, #1a3a2a 100%); }
+    .gis-bg-4 { background: linear-gradient(135deg, #1a3a2a 0%, #1e4d6b 60%, #2e5c3e 100%); }
+    .gis-bg-5 { background: linear-gradient(135deg, #2e5c3e 0%, #1a3a2a 50%, #6b4c1e 100%); }
+    .gis-bg-6 { background: linear-gradient(135deg, #1e2d3d 0%, #1a3a2a 60%, #2e5c3e 100%); }
+
+    .gis-visual-icon {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      width: 64px; height: 64px;
+      background: rgba(200,216,194,0.12);
+      border-radius: 50%;
+      border: 1px solid rgba(200,216,194,0.25);
+    }
+    .gis-visual-icon svg { width: 28px; height: 28px; stroke: var(--mist); fill: none; stroke-width: 1.4; }
+
+    /* decorative grid lines for map feel */
+    .gis-card-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(200,216,194,0.06) 30px),
+        repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(200,216,194,0.06) 30px);
+    }
+
+    .gis-card-visual::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 30%;
+      width: 120px; height: 80px;
+      background: rgba(107,143,113,0.15);
+      border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+      transform: translateY(-50%);
+    }
+
+    .gis-card-label {
+      position: absolute;
+      top: 12px; left: 14px;
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(200,216,194,0.7);
+      z-index: 2;
+    }
+
+    .gis-card-region {
+      position: absolute;
+      bottom: 12px; right: 14px;
+      font-family: var(--serif);
+      font-size: 0.95rem; font-style: italic;
+      color: rgba(200,216,194,0.55);
+      z-index: 2;
+    }
+
+    .gis-card-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
+
+    .gis-card-title {
+      font-family: var(--serif);
+      font-size: 1.2rem; font-weight: 400;
+      color: var(--forest); line-height: 1.25;
+      margin-bottom: 0.7rem;
+    }
+
+    .gis-card-desc {
+      font-size: 0.86rem; color: var(--muted);
+      line-height: 1.7; margin-bottom: 1.1rem; flex: 1;
+    }
+
+    .gis-card-tools {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .gis-card-tool {
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.6rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--muted);
+    }
+
+    .gis-card-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.8rem; font-weight: 500;
+      color: var(--sage); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .gis-card-link:hover { color: var(--forest); }
+    .gis-card-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    /* storymaps highlight */
+    .storymaps-highlight {
+      background: var(--forest);
+      border-radius: 3px;
+      padding: 3rem;
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+    }
+    .sm-label {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--mist); margin-bottom: 0.75rem;
+    }
+    .sm-title {
+      font-family: var(--serif); font-size: 1.6rem; font-weight: 300;
+      color: var(--cream); line-height: 1.25; margin-bottom: 0.85rem;
+    }
+    .sm-desc { font-size: 0.88rem; color: rgba(200,216,194,0.65); line-height: 1.7; }
+
+    /* skills banner */
+    .skills-banner { background: var(--parchment); padding: 5rem 0; }
+    .software-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; margin-top: 2.5rem; }
+    .sw-box {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+    .sw-name { font-size: 0.82rem; font-weight: 500; color: var(--forest); }
+    .sw-cat { font-size: 0.7rem; color: var(--muted); margin-top: 0.2rem; }
+
+    @media (max-width: 860px) {
+      .gis-grid { grid-template-columns: 1fr; }
+      .storymaps-highlight { grid-template-columns: 1fr; }
+      .software-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-eyebrow fade">Spatial Science</div>
+    <h1 class="fade delay-1">GIS projects &amp;<br><em>mapping work</em></h1>
+    <p class="fade delay-2" style="margin-top:1.25rem; max-width:560px; font-size:1.02rem; color:var(--muted); line-height:1.8;">
+      A collection of geospatial analyses, remote sensing studies, and spatial
+      modelling projects spanning Nigeria, Spain, the Netherlands, and the USA.
+    </p>
+  </div>
+</div>
+
+<!-- GIS PROJECTS GRID -->
+<section>
+  <div class="page-wrap">
+    <div class="section-eyebrow fade">Portfolio</div>
+    <h2 class="fade">Spatial <em>analyses</em></h2>
+
+    <div class="gis-grid">
+
+      <div class="gis-card fade">
+        <div class="gis-card-visual gis-bg-1">
+          <div class="gis-card-label">Land Suitability</div>
+          <div class="gis-visual-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="gis-card-region">Gran Canaria</div>
+        </div>
+        <div class="gis-card-body">
+          <div class="gis-card-title">CO₂ Sink Suitability Analysis — Macaronesian Islands</div>
+          <div class="gis-card-desc">Multi-criteria GIS suitability model identifying optimal afforestation and reforestation sites across Gran Canaria, integrating soil, slope, climate, land cover, and carbon emission data. Results published in Trees, Forests and People (Q1).</div>
+          <div class="gis-card-tools">
+            <span class="gis-card-tool">ArcGIS Pro</span>
+            <span class="gis-card-tool">QGIS</span>
+            <span class="gis-card-tool">Weighted Overlay</span>
+            <span class="gis-card-tool">Raster Analysis</span>
+          </div>
+          <a href="https://storymaps.arcgis.com/stories/c3c36c5cf6974f988dfd975d9ef1f989" target="_blank" class="gis-card-link">View StoryMap <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+      </div>
+
+      <div class="gis-card fade delay-1">
+        <div class="gis-card-visual gis-bg-2">
+          <div class="gis-card-label">Spatial Distribution</div>
+          <div class="gis-visual-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="gis-card-region">Osun, Nigeria</div>
+        </div>
+        <div class="gis-card-body">
+          <div class="gis-card-title">Geospatial Distribution of Sawmills — Ife-East LGA</div>
+          <div class="gis-card-desc">Mapped and analysed informal sawmill locations across Ife-East Local Government Area, Osun State. Identified spatial clustering patterns, proximity to forest reserves, and deforestation risk zones — informing forest management policy recommendations.</div>
+          <div class="gis-card-tools">
+            <span class="gis-card-tool">QGIS</span>
+            <span class="gis-card-tool">ArcMap</span>
+            <span class="gis-card-tool">Google Earth Engine</span>
+            <span class="gis-card-tool">Field Survey</span>
+          </div>
+          <a href="research.html" class="gis-card-link">View publication <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="gis-card fade delay-2">
+        <div class="gis-card-visual gis-bg-3">
+          <div class="gis-card-label">Historical Mapping</div>
+          <div class="gis-visual-icon">
+            <svg viewBox="0 0 24 24"><polygon points="3,6 9,3 15,6 21,3 21,18 15,21 9,18 3,21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+          </div>
+          <div class="gis-card-region">Anaga, Tenerife</div>
+        </div>
+        <div class="gis-card-body">
+          <div class="gis-card-title">Phytotoponym Mapping — Anaga Massif, Canary Islands</div>
+          <div class="gis-card-desc">Identified and spatially analysed phytotoponyms (plant place names) in Anaga Massif, Tenerife, using them as proxies to reconstruct historical plant distributions and lost vegetation communities. Contributed to a conference paper at the XVIII Spanish Geography Congress.</div>
+          <div class="gis-card-tools">
+            <span class="gis-card-tool">ArcGIS Pro</span>
+            <span class="gis-card-tool">Historical Maps</span>
+            <span class="gis-card-tool">Spatial Statistics</span>
+          </div>
+          <a href="research.html" class="gis-card-link">View conference paper <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="gis-card fade">
+        <div class="gis-card-visual gis-bg-4">
+          <div class="gis-card-label">Urban Green Spaces</div>
+          <div class="gis-visual-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+          </div>
+          <div class="gis-card-region">Groningen, NL</div>
+        </div>
+        <div class="gis-card-body">
+          <div class="gis-card-title">Green Space Mapping — City of Groningen</div>
+          <div class="gis-card-desc">Collaborated with WWF Netherlands and the municipality of Groningen to map urban green spaces, assess their ecosystem service provision, and develop a plan for strategic green infrastructure expansion. Used spatial data to prioritise intervention areas.</div>
+          <div class="gis-card-tools">
+            <span class="gis-card-tool">QGIS</span>
+            <span class="gis-card-tool">OpenStreetMap</span>
+            <span class="gis-card-tool">Stakeholder Mapping</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gis-card fade delay-1">
+        <div class="gis-card-visual gis-bg-5">
+          <div class="gis-card-label">Deforestation Tracking</div>
+          <div class="gis-visual-icon">
+            <svg viewBox="0 0 24 24"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/><polyline points="17,6 23,6 23,12"/></svg>
+          </div>
+          <div class="gis-card-region">Northern Nigeria</div>
+        </div>
+        <div class="gis-card-body">
+          <div class="gis-card-title">Deforestation &amp; Forest Degradation Mapping — Northern Nigeria</div>
+          <div class="gis-card-desc">During a GIS Specialist internship at CESRA, developed detailed maps of deforestation and forest degradation across Northern Nigeria using QGIS and ArcGIS. Digitised forest reserve boundaries and created photogrammetry-based change detection reports to support national monitoring.</div>
+          <div class="gis-card-tools">
+            <span class="gis-card-tool">ArcGIS</span>
+            <span class="gis-card-tool">QGIS</span>
+            <span class="gis-card-tool">Photogrammetry</span>
+            <span class="gis-card-tool">Change Detection</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gis-card fade delay-2">
+        <div class="gis-card-visual gis-bg-6">
+          <div class="gis-card-label">Ecosystem Restoration</div>
+          <div class="gis-visual-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="gis-card-region">Nigeria</div>
+        </div>
+        <div class="gis-card-body">
+          <div class="gis-card-title">Forest Inventory &amp; Ecosystem Restoration GIS — FRIN</div>
+          <div class="gis-card-desc">As Research Scientist at the Forestry Research Institute of Nigeria, oversaw collection and spatial analysis of forest inventory data from over 20 sites. Contributed to regional forestry management plans and developed a climate and forestry knowledge portal.</div>
+          <div class="gis-card-tools">
+            <span class="gis-card-tool">ArcGIS</span>
+            <span class="gis-card-tool">R</span>
+            <span class="gis-card-tool">Field Inventory</span>
+            <span class="gis-card-tool">Remote Sensing</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STORYMAPS HIGHLIGHT -->
+<section style="background: var(--parchment); padding: 5rem 0;">
+  <div class="page-wrap">
+    <div class="storymaps-highlight fade">
+      <div>
+        <div class="sm-label">Featured · ArcGIS StoryMaps</div>
+        <div class="sm-title">Interactive Portfolio on ArcGIS StoryMaps</div>
+        <div class="sm-desc" style="margin-bottom: 1.5rem;">Explore an interactive visual presentation of my GIS research, including maps, spatial analyses, and storytelling around environmental science projects. Built using ArcGIS StoryMaps.</div>
+        <a href="https://storymaps.arcgis.com/stories/c3c36c5cf6974f988dfd975d9ef1f989" target="_blank" class="btn btn-outline" style="border-color: rgba(200,216,194,0.4); color: var(--cream);">Open StoryMaps ↗</a>
+      </div>
+      <div style="text-align: center;">
+        <div style="width: 120px; height: 120px; border-radius: 50%; background: rgba(107,143,113,0.15); border: 1px solid rgba(107,143,113,0.3); display: flex; align-items: center; justify-content: center;">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(200,216,194,0.6)" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOFTWARE -->
+<section class="skills-banner">
+  <div class="page-wrap">
+    <div class="section-eyebrow fade">Toolset</div>
+    <h2 class="fade">GIS &amp; spatial <em>software</em></h2>
+    <div class="software-grid">
+      <div class="sw-box fade"><div class="sw-name">ArcGIS Pro</div><div class="sw-cat">ESRI</div></div>
+      <div class="sw-box fade delay-1"><div class="sw-name">QGIS</div><div class="sw-cat">Open Source</div></div>
+      <div class="sw-box fade delay-2"><div class="sw-name">Google Earth Engine</div><div class="sw-cat">Cloud GEE</div></div>
+      <div class="sw-box fade"><div class="sw-name">ERDAS Imagine</div><div class="sw-cat">Remote Sensing</div></div>
+      <div class="sw-box fade delay-1"><div class="sw-name">SNAP</div><div class="sw-cat">ESA Sentinel</div></div>
+      <div class="sw-box fade delay-2"><div class="sw-name">Tableau</div><div class="sw-cat">Data Viz</div></div>
+    </div>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+</body>
+</html>

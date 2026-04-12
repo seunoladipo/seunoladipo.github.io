@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Experience — Seun Oladipo</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background: var(--cream); }
+
+    /* tabs */
+    .tab-bar {
+      display: flex; gap: 0; border-bottom: 1px solid var(--border);
+      margin-bottom: 3.5rem;
+      margin-top: 2.5rem;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.8rem; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      background: none; border: none;
+      color: var(--muted); cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--forest); }
+    .tab-btn.active { color: var(--forest); border-bottom-color: var(--forest); font-weight: 500; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* timeline */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+
+    .tl-item {
+      position: relative;
+      padding-bottom: 3rem;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -2.375rem; top: 0.35rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--sage);
+      border: 2px solid var(--cream);
+      box-shadow: 0 0 0 1px var(--sage);
+    }
+
+    .tl-meta {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--sage); margin-bottom: 0.35rem;
+    }
+
+    .tl-dates {
+      font-size: 0.78rem; color: var(--muted); margin-bottom: 0.2rem;
+    }
+
+    .tl-location {
+      font-size: 0.78rem; color: var(--muted); margin-bottom: 0.75rem;
+      font-style: italic;
+    }
+
+    .tl-title {
+      font-family: var(--serif);
+      font-size: 1.3rem; font-weight: 400;
+      color: var(--forest); line-height: 1.2;
+      margin-bottom: 0.3rem;
+    }
+
+    .tl-org {
+      font-size: 0.88rem; font-weight: 500; color: var(--moss);
+      margin-bottom: 0.85rem;
+    }
+
+    .tl-desc {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 0.85rem;
+    }
+
+    .tl-bullets {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.45rem;
+      margin-bottom: 1rem;
+    }
+    .tl-bullets li {
+      font-size: 0.86rem; color: var(--text); line-height: 1.6;
+      display: flex; align-items: flex-start; gap: 0.6rem;
+    }
+    .tl-bullets li::before {
+      content: '→'; color: var(--sage); flex-shrink: 0;
+      font-size: 0.78rem; margin-top: 0.15rem;
+    }
+
+    /* volunteering section */
+    .vol-section { background: var(--parchment); padding: 6rem 0; }
+    .vol-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 3rem; }
+    .vol-card {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 3px; padding: 1.75rem;
+    }
+    .vol-role { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
+    .vol-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--forest); margin-bottom: 0.3rem; }
+    .vol-org { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.85rem; }
+    .vol-desc { font-size: 0.84rem; color: var(--text); line-height: 1.65; }
+
+    @media (max-width: 760px) {
+      .vol-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-eyebrow fade">Experience</div>
+    <h1 class="fade delay-1">A career built<br>across <em>continents</em></h1>
+    <p class="fade delay-2" style="margin-top:1.25rem; max-width:540px; font-size:1.02rem; color:var(--muted); line-height:1.8;">
+      From fieldwork in Nigerian forest reserves to research in the Canary Islands,
+      the Netherlands, and now the USA — over a decade of environmental science in practice.
+    </p>
+  </div>
+</div>
+
+<!-- TABS -->
+<section>
+  <div class="page-wrap">
+    <div class="tab-bar fade">
+      <button class="tab-btn active" data-tab="research">Research</button>
+      <button class="tab-btn" data-tab="professional">Professional</button>
+      <button class="tab-btn" data-tab="teaching">Teaching</button>
+      <button class="tab-btn" data-tab="leadership">Leadership</button>
+    </div>
+
+    <!-- RESEARCH -->
+    <div class="tab-content active" id="tab-research">
+      <div class="timeline">
+
+        <div class="tl-item fade">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">PhD Research · Current</div>
+          <div class="tl-title">Graduate Student — PhD</div>
+          <div class="tl-org">University of Virginia</div>
+          <div class="tl-dates">Aug 2025 – Present</div>
+          <div class="tl-location">Charlottesville, VA, USA</div>
+          <div class="tl-desc"><strong>Project:</strong> Prioritization/Optimization Approaches for Ecosystem Service Provision in Urban Green Spaces.</div>
+          <ul class="tl-bullets">
+            <li>Conducting a systematic literature review to assess the current status of siting green spaces across US cities</li>
+            <li>Analysing decision-support tools, spatial models, and data inputs guiding green space placement</li>
+            <li>Developing a framework to assess which ecosystem services are maximised across alternative siting scenarios</li>
+          </ul>
+          <div class="tags"><span class="tag">Urban Ecology</span><span class="tag">GIS Modelling</span><span class="tag">Ecosystem Services</span></div>
+        </div>
+
+        <div class="tl-item fade delay-1">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">MSc Research · Published</div>
+          <div class="tl-title">Graduate Student — MSc Thesis</div>
+          <div class="tl-org">University of Las Palmas Gran Canaria &amp; University of Groningen</div>
+          <div class="tl-dates">Nov 2023 – Jun 2024</div>
+          <div class="tl-location">Gran Canaria, Spain</div>
+          <div class="tl-desc"><strong>Project:</strong> Methodology for Selecting Potential CO₂ Sink in Macaronesia Island: The Case of Gran Canaria.</div>
+          <ul class="tl-bullets">
+            <li>Conducted land suitability analysis to identify optimal locations for green space and carbon sinks</li>
+            <li>Analysed greenhouse gas emissions across all 8 Canary Islands, identifying three major emission clusters</li>
+            <li>Published peer-reviewed results within 3 months of thesis completion in a Q1 Journal</li>
+          </ul>
+          <div class="tags"><span class="tag">Land Suitability</span><span class="tag">CO₂ Sinks</span><span class="tag">Published</span></div>
+        </div>
+
+        <div class="tl-item fade delay-2">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">Junior Researcher</div>
+          <div class="tl-title">Junior Researcher — Sustainable Transport</div>
+          <div class="tl-org">University of Groningen &amp; Learning Hub Friesland (LHF)</div>
+          <div class="tl-dates">Sep 2023 – Jan 2024</div>
+          <div class="tl-location">Groningen, the Netherlands</div>
+          <div class="tl-desc"><strong>Project:</strong> Integrating Backcasting Methods in an 8-week Lesson Material for Island Schools with a Focus on Sustainable Transport.</div>
+          <ul class="tl-bullets">
+            <li>Designed and facilitated focus group discussions with secondary school students in Greece, Iceland, and the Netherlands</li>
+            <li>Analysed focus group transcripts using Atlas.ti to extract thematic patterns and student priorities</li>
+            <li>Translated empirical insights into evidence-based recommendations for embedding backcasting approaches in curricula</li>
+          </ul>
+          <div class="tags"><span class="tag">Qualitative Research</span><span class="tag">Backcasting</span><span class="tag">Island Studies</span></div>
+        </div>
+
+        <div class="tl-item fade">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">Undergraduate Research · Published</div>
+          <div class="tl-title">Junior Researcher — BSc Thesis</div>
+          <div class="tl-org">Federal University of Technology Akure</div>
+          <div class="tl-dates">Jul 2019 – Dec 2019</div>
+          <div class="tl-location">Akure, Nigeria</div>
+          <div class="tl-desc"><strong>Project:</strong> Assessment of Geospatial Distribution of Sawmills in Ife-East Local Government Area, Osun State, Nigeria.</div>
+          <ul class="tl-bullets">
+            <li>Developed a complete strategy and content for thesis research</li>
+            <li>Obtained data using questionnaires, field surveys, and existing secondary sources</li>
+            <li>Analysed and mapped sawmill spatial distribution using QGIS, ArcMap, and Google Earth Engine</li>
+          </ul>
+          <div class="tags"><span class="tag">Spatial Analysis</span><span class="tag">Field Survey</span><span class="tag">Forestry</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PROFESSIONAL -->
+    <div class="tab-content" id="tab-professional">
+      <div class="timeline">
+
+        <div class="tl-item fade">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">Research Institute</div>
+          <div class="tl-title">Geospatial Researcher</div>
+          <div class="tl-org">Institute of Oceanography and Global Change (IOCAG)</div>
+          <div class="tl-dates">Jan 2023 – Jun 2023</div>
+          <div class="tl-location">Gran Canaria, Spain</div>
+          <ul class="tl-bullets">
+            <li>Identified the roles of phytotoponyms (plant place names) in reconstructing historical plant distributions</li>
+            <li>Analysed the spatial distribution of phytotoponyms and lost plant communities in Anaga Massif, Tenerife</li>
+            <li>Utilised geospatial tools to assess the correlation between phytotoponyms and historical vegetation</li>
+          </ul>
+          <div class="tags"><span class="tag">GIS</span><span class="tag">Historical Ecology</span><span class="tag">Spain</span></div>
+        </div>
+
+        <div class="tl-item fade delay-1">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">Project Coordination</div>
+          <div class="tl-title">Project Coordinator</div>
+          <div class="tl-org">The Young African Bookworms Initiative</div>
+          <div class="tl-dates">Nov 2021 – Aug 2022</div>
+          <div class="tl-location">Ikeja, Nigeria</div>
+          <ul class="tl-bullets">
+            <li>Led the successful coordination of three community literacy projects</li>
+            <li>Monitored programme participation across five schools, improving student engagement by 30%</li>
+            <li>Engaged with over 20 NGOs and partners; donated over 5,000 books to remote communities across Nigeria</li>
+            <li>Managed logistics for more than 20 events, ensuring 100% on-time delivery</li>
+            <li>Launched the Paragon Train Club model, reaching over 200 pupils across four schools</li>
+          </ul>
+          <div class="tags"><span class="tag">Project Management</span><span class="tag">NGO</span><span class="tag">Stakeholder Engagement</span></div>
+        </div>
+
+        <div class="tl-item fade delay-2">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">Research Science</div>
+          <div class="tl-title">Research Scientist</div>
+          <div class="tl-org">Forestry Research Institute of Nigeria (FRIN)</div>
+          <div class="tl-dates">May 2020 – Dec 2020</div>
+          <div class="tl-location">Ibadan, Nigeria</div>
+          <ul class="tl-bullets">
+            <li>Developed a climate and forestry knowledge portal</li>
+            <li>Oversaw collection and analysis of forest inventory data from over 20 sites, contributing to national management plans</li>
+            <li>Trained interns in GIS, remote sensing, R programming, and technical report writing</li>
+          </ul>
+          <div class="tags"><span class="tag">Forest Inventory</span><span class="tag">GIS</span><span class="tag">Remote Sensing</span></div>
+        </div>
+
+        <div class="tl-item fade">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">Internship · GIS</div>
+          <div class="tl-title">GIS Specialist (Intern)</div>
+          <div class="tl-org">Centre for Space Research and Application (CESRA)</div>
+          <div class="tl-dates">Feb 2018 – Sep 2018</div>
+          <div class="tl-location">Akure, Nigeria</div>
+          <ul class="tl-bullets">
+            <li>Leveraged QGIS and ArcGIS to integrate, visualise, and analyse spatial datasets on ecosystem restoration projects</li>
+            <li>Developed detailed maps on deforestation and forest degradation in Northern Nigeria</li>
+            <li>Digitised forest reserves to track deforestation rates and created photogrammetry reports</li>
+          </ul>
+          <div class="tags"><span class="tag">ArcGIS</span><span class="tag">QGIS</span><span class="tag">Deforestation</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TEACHING -->
+    <div class="tab-content" id="tab-teaching">
+      <div class="timeline">
+
+        <div class="tl-item fade">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">Teaching · Secondary School</div>
+          <div class="tl-title">ICT Teacher</div>
+          <div class="tl-org">Government Technical College Utuh</div>
+          <div class="tl-dates">Dec 2020 – Oct 2021</div>
+          <div class="tl-location">Anambra, Nigeria</div>
+          <ul class="tl-bullets">
+            <li>Taught high school students practical ICT courses</li>
+            <li>Organised after-school tutorials for prospective Senior Secondary Certificate Examination (SSCE) candidates</li>
+          </ul>
+          <div class="tags"><span class="tag">ICT Education</span><span class="tag">Secondary School</span></div>
+        </div>
+
+        <div class="tl-item fade delay-1">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">Entrepreneurship · Education</div>
+          <div class="tl-title">Founder &amp; Tutor</div>
+          <div class="tl-org">Fountain Group of Schools</div>
+          <div class="tl-dates">Apr 2020 – Sep 2020</div>
+          <div class="tl-location">Lagos, Nigeria</div>
+          <ul class="tl-bullets">
+            <li>Organised, taught, and graded over 50 primary and secondary school students in Mathematics and Basic Science during the COVID-19 lockdown</li>
+            <li>Demonstrated entrepreneurial initiative during a period of significant societal disruption</li>
+          </ul>
+          <div class="tags"><span class="tag">Tutoring</span><span class="tag">Entrepreneurship</span><span class="tag">STEM</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LEADERSHIP -->
+    <div class="tab-content" id="tab-leadership">
+      <div class="timeline">
+
+        <div class="tl-item fade">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">Anti-Drug Campaign</div>
+          <div class="tl-title">President — Drug-Free &amp; Quality Control Community</div>
+          <div class="tl-org">National Drug Law Enforcement Agency</div>
+          <div class="tl-dates">Feb 2021 – Oct 2021</div>
+          <div class="tl-location">Anambra, Nigeria</div>
+          <ul class="tl-bullets">
+            <li>Led several campaigns against the use and abuse of drugs in motor parks and markets</li>
+            <li>Founded the Drug-Free Club in three secondary schools in Utuh Community</li>
+          </ul>
+        </div>
+
+        <div class="tl-item fade delay-1">
+          <div class="tl-dot"></div>
+          <div class="tl-meta">Student Government</div>
+          <div class="tl-title">Welfare Committee Chairman (Student Parliament)</div>
+          <div class="tl-org">Federal University of Technology Akure Students' Union</div>
+          <div class="tl-dates">Feb 2016 – Sep 2018</div>
+          <div class="tl-location">Ondo, Nigeria</div>
+          <ul class="tl-bullets">
+            <li>Proposed several approaches to improve the academic excellence and well-being of students</li>
+            <li>Co-sponsored a bill titled "Operation Feed Futarians," which fed over 1,000 FUTA undergraduate students</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VOLUNTEERING -->
+<section class="vol-section">
+  <div class="page-wrap">
+    <div class="section-eyebrow fade">Service</div>
+    <h2 class="fade">Volunteering &amp; <em>community</em></h2>
+    <div class="vol-grid">
+      <div class="vol-card fade">
+        <div class="vol-role">Research &amp; Advocacy</div>
+        <div class="vol-title">Volunteer &amp; Research Strategist</div>
+        <div class="vol-org">World Wildlife Fund (WWF) Netherlands · Oct 2024 – Present</div>
+        <div class="vol-desc">Liaised with the municipality to identify potential green spaces and their benefits in Groningen. Developed a collaborative mapping plan with environmental experts and local stakeholders.</div>
+      </div>
+      <div class="vol-card fade delay-1">
+        <div class="vol-role">Conservation</div>
+        <div class="vol-title">Associate Researcher</div>
+        <div class="vol-org">Edenworld Initiative, Ondo, Nigeria · Aug 2019 – Present</div>
+        <div class="vol-desc">Organised and participated in tree-planting campaigns and global climate strike walks. Mobilised community members to participate in environmental conservation events.</div>
+      </div>
+      <div class="vol-card fade delay-2">
+        <div class="vol-role">Mapping · Level 8</div>
+        <div class="vol-title">Google Local Guide</div>
+        <div class="vol-org">Google Africa, Asia &amp; Europe · Dec 2017 – Present</div>
+        <div class="vol-desc">Added over 4,000 missing places and 200 missing roads to Google Maps across Africa, Asia, and Europe. Wrote over 200 reviews. First ten runner-up in the 3TRAC challenge celebrating 35,000 approved roads (2023).</div>
+      </div>
+      <div class="vol-card fade">
+        <div class="vol-role">International Forestry</div>
+        <div class="vol-title">Member</div>
+        <div class="vol-org">International Forestry Students' Association · 2014 – Present</div>
+        <div class="vol-desc">Active member since undergraduate studies, participating in conferences, regional meetings, and advocacy for sustainable forest management globally.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        // re-trigger fade for newly visible items
+        document.querySelectorAll('#tab-' + btn.dataset.tab + ' .fade').forEach(el => {
+          el.classList.remove('in');
+          setTimeout(() => el.classList.add('in'), 50);
+        });
+      });
+    });
+  });
+</script>
+</body>
+</html>

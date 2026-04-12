@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog — Seun Oladipo</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background: var(--cream); }
+
+    /* featured post */
+    .featured-post {
+      background: var(--forest);
+      border-radius: 3px;
+      padding: 3.5rem;
+      margin-top: 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-post::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -5%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(107,143,113,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .fp-label {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--mist); margin-bottom: 0.75rem;
+    }
+    .fp-title {
+      font-family: var(--serif); font-size: 1.8rem; font-weight: 300;
+      color: var(--cream); line-height: 1.2; margin-bottom: 1rem;
+    }
+    .fp-desc {
+      font-size: 0.9rem; color: rgba(200,216,194,0.65); line-height: 1.7;
+      margin-bottom: 1.5rem; max-width: 520px;
+    }
+    .fp-meta { font-size: 0.78rem; color: rgba(200,216,194,0.45); margin-bottom: 1.5rem; }
+
+    .featured-badge {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-size: 0.66rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      background: rgba(200,216,194,0.12);
+      border: 1px solid rgba(200,216,194,0.2);
+      border-radius: 2px;
+      color: rgba(200,216,194,0.7);
+    }
+
+    /* blog grid */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .blog-card {
+      background: var(--parchment);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,58,42,0.08); }
+
+    .bc-color-bar { height: 3px; }
+    .bc-color-1 { background: var(--sage); }
+    .bc-color-2 { background: var(--earth); }
+    .bc-color-3 { background: #4a7c8a; }
+
+    .bc-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
+
+    .bc-category {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--sage); margin-bottom: 0.75rem;
+    }
+    .bc-title {
+      font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
+      color: var(--forest); line-height: 1.25; margin-bottom: 0.75rem;
+    }
+    .bc-desc {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
+      flex: 1; margin-bottom: 1.25rem;
+    }
+    .bc-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--border); padding-top: 1rem;
+      margin-top: auto;
+    }
+    .bc-date { font-size: 0.75rem; color: var(--muted); }
+    .bc-arrow { font-size: 0.8rem; color: var(--sage); text-decoration: none; }
+
+    /* writing philosophy */
+    .writing-about { background: var(--parchment); padding: 6rem 0; }
+
+    .topics-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; margin-top: 2.5rem;
+    }
+    .topic-box {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 3px; padding: 1.25rem;
+      text-align: center;
+    }
+    .topic-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .topic-name { font-size: 0.85rem; font-weight: 500; color: var(--forest); }
+    .topic-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* newsletter CTA */
+    .newsletter-cta { background: var(--forest); padding: 5rem 0; }
+    .cta-inner {
+      max-width: 560px; margin: 0 auto;
+      padding: 0 clamp(1.25rem, 5vw, 4rem);
+      text-align: center;
+    }
+    .cta-inner h2 { color: var(--cream); margin-bottom: 1rem; }
+    .cta-inner p { color: rgba(200,216,194,0.65); font-size: 0.95rem; margin-bottom: 2rem; }
+
+    @media (max-width: 860px) {
+      .featured-post { grid-template-columns: 1fr; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .topics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-eyebrow fade">Writing</div>
+    <h1 class="fade delay-1">Environmental<br><em>commentary &amp; ideas</em></h1>
+    <p class="fade delay-2" style="margin-top:1.25rem; max-width:540px; font-size:1.02rem; color:var(--muted); line-height:1.8;">
+      Opinion pieces, editorials, and essays on climate change, food security,
+      island sustainability, and the future of our ecosystems.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="page-wrap">
+
+    <!-- FEATURED -->
+    <div class="section-eyebrow fade">Featured</div>
+    <a href="https://bit.ly/OPED_EnvisioningCOP28" target="_blank" rel="noopener" style="text-decoration: none;">
+      <div class="featured-post fade delay-1">
+        <div style="position: relative; z-index: 1;">
+          <div class="fp-label">Opinion Editorial · COP28</div>
+          <div class="fp-title">Envisioning COP28 — The Crucial Role of Climate Adaptation on Food Security</div>
+          <div class="fp-desc">An opinion editorial examining how the COP28 climate negotiations must centre food system adaptation as a core pillar of climate action — and what meaningful commitments from world leaders should look like.</div>
+          <div class="fp-meta">Published · Available on bit.ly/OPED_EnvisioningCOP28</div>
+          <span class="btn" style="background: rgba(200,216,194,0.12); color: var(--cream); border: 1px solid rgba(200,216,194,0.25); font-size: 0.82rem; padding: 0.6rem 1.25rem; border-radius: 2px; display: inline-block;">Read the editorial ↗</span>
+        </div>
+        <div class="featured-badge">Featured</div>
+      </div>
+    </a>
+
+    <!-- BLOG GRID -->
+    <div class="section-eyebrow fade" style="margin-top: 4rem;">All Writing</div>
+    <h2 class="fade">Articles &amp; <em>essays</em></h2>
+
+    <div class="blog-grid">
+
+      <a href="https://bit.ly/OPED_EnvisioningCOP28" target="_blank" rel="noopener" class="blog-card fade">
+        <div class="bc-color-bar bc-color-1"></div>
+        <div class="bc-body">
+          <div class="bc-category">Climate Policy</div>
+          <div class="bc-title">Envisioning COP28 — The Crucial Role of Climate Adaptation on Food Security</div>
+          <div class="bc-desc">An in-depth opinion editorial on what COP28 means for food systems and how climate adaptation must be prioritised in international negotiations to protect vulnerable communities.</div>
+          <div class="bc-footer">
+            <span class="bc-date">Opinion Editorial</span>
+            <span class="bc-arrow">↗</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://bit.ly/sustransformation" target="_blank" rel="noopener" class="blog-card fade delay-1">
+        <div class="bc-color-bar bc-color-2"></div>
+        <div class="bc-body">
+          <div class="bc-category">Sustainability</div>
+          <div class="bc-title">Seven Transformation Approaches to Sustainable Food Security</div>
+          <div class="bc-desc">An analytical essay outlining seven systemic transformation strategies that can make global food systems more sustainable, resilient, and equitable in the face of climate disruption.</div>
+          <div class="bc-footer">
+            <span class="bc-date">Essay</span>
+            <span class="bc-arrow">↗</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://bit.ly/islandness" target="_blank" rel="noopener" class="blog-card fade delay-2">
+        <div class="bc-color-bar bc-color-3"></div>
+        <div class="bc-body">
+          <div class="bc-category">Island Studies</div>
+          <div class="bc-title">Islandness of Bermuda and Pitcairn Island</div>
+          <div class="bc-desc">A reflective piece examining the concept of "islandness" through the lens of Bermuda and Pitcairn Island — exploring how geography, isolation, and community shape island identity and sustainability challenges.</div>
+          <div class="bc-footer">
+            <span class="bc-date">Essay</span>
+            <span class="bc-arrow">↗</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section class="writing-about">
+  <div class="page-wrap">
+    <div class="section-eyebrow fade">Topics</div>
+    <h2 class="fade">What I write <em>about</em></h2>
+    <div class="topics-grid">
+      <div class="topic-box fade">
+        <div class="topic-icon">🌍</div>
+        <div class="topic-name">Climate Change</div>
+        <div class="topic-sub">Adaptation &amp; mitigation policy</div>
+      </div>
+      <div class="topic-box fade delay-1">
+        <div class="topic-icon">🌾</div>
+        <div class="topic-name">Food Security</div>
+        <div class="topic-sub">Systems &amp; transformation</div>
+      </div>
+      <div class="topic-box fade delay-2">
+        <div class="topic-icon">🏝</div>
+        <div class="topic-name">Island Sustainability</div>
+        <div class="topic-sub">Resilience &amp; islandness</div>
+      </div>
+      <div class="topic-box fade delay-3">
+        <div class="topic-icon">🗺</div>
+        <div class="topic-name">GIS &amp; Mapping</div>
+        <div class="topic-sub">Spatial science perspectives</div>
+      </div>
+    </div>
+    <div style="margin-top: 3rem;" class="fade">
+      <p style="font-size: 0.95rem; color: var(--muted); max-width: 560px; line-height: 1.8;">
+        I write at the intersection of environmental science and public discourse — translating
+        complex research into accessible, actionable ideas for policymakers, practitioners,
+        and engaged citizens. If you'd like to commission a piece or collaborate, 
+        <a href="contact.html" style="color: var(--moss);">get in touch</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER CTA -->
+<section class="newsletter-cta">
+  <div class="cta-inner">
+    <div class="section-eyebrow fade" style="justify-content: center; color: var(--mist);">Stay in touch</div>
+    <h2 class="fade">Want to collaborate?</h2>
+    <p class="fade delay-1">I'm always open to research partnerships, editorial opportunities, and academic collaborations. Reach out directly and let's talk.</p>
+    <div class="fade delay-2">
+      <a href="contact.html" class="btn" style="background: transparent; color: var(--cream); border: 1px solid rgba(200,216,194,0.4); font-size: 0.85rem;">Get in touch ↗</a>
+    </div>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+</body>
+</html>
