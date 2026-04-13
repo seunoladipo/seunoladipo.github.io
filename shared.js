@@ -2,11 +2,8 @@
 
 const NAV_LINKS = [
   { href: 'index.html',      label: 'Home' },
-  { href: 'about.html',      label: 'About' },
   { href: 'research.html',   label: 'Research' },
-  { href: 'gis.html',        label: 'GIS Projects' },
   { href: 'experience.html', label: 'Experience' },
-  { href: 'blog.html',       label: 'Blog' },
   { href: 'contact.html',    label: 'Contact', cta: true },
 ];
 
@@ -37,16 +34,14 @@ function buildFooter() {
       <div class="footer-inner">
         <div>
           <div class="footer-brand-name">Seun Oladipo</div>
-          <div class="footer-tagline">Environmental Scientist & GIS Specialist<br>PhD Candidate, University of Virginia</div>
+          <div class="footer-tagline">PhD Candidate in Environmental Science<br>University of Virginia</div>
         </div>
         <div>
           <div class="footer-col-title">Navigate</div>
           <ul class="footer-links">
-            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="research.html">Research</a></li>
-            <li><a href="gis.html">GIS Projects</a></li>
             <li><a href="experience.html">Experience</a></li>
-            <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>

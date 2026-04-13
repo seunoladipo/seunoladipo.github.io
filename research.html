@@ -6,129 +6,125 @@
   <title>Research — Seun Oladipo</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    body { background: var(--cream); }
+    body { background:var(--cream); }
 
-    /* filter bar */
-    .filter-bar {
-      display: flex; gap: 0.5rem; flex-wrap: wrap;
-      margin: 2.5rem 0 3.5rem;
-    }
-    .filter-btn {
-      padding: 0.4rem 1rem;
-      font-size: 0.78rem; font-weight: 400;
-      letter-spacing: 0.05em;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--forest);
-      color: var(--cream);
-      border-color: var(--forest);
+    /* ── PUBLICATIONS ───────────────────────────────────── */
+    .pub-block { margin-bottom:4rem; }
+
+    .pub-type-heading {
+      font-size:0.68rem; font-weight:500; letter-spacing:0.14em;
+      text-transform:uppercase; color:var(--muted);
+      padding-bottom:0.75rem;
+      border-bottom:1px solid var(--border);
+      margin-bottom:0;
     }
 
-    /* research projects */
-    .research-list { display: flex; flex-direction: column; gap: 1.5rem; }
-
-    .rp-card {
-      background: var(--parchment);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 2.25rem;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 2rem;
-      align-items: start;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .rp-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26,58,42,0.07); }
-
-    .rp-year {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--sage);
-      min-width: 56px;
-      padding-top: 0.15rem;
+    .pub-entry {
+      border-bottom:1px solid var(--border);
+      padding:1.75rem 0;
+      display:grid;
+      grid-template-columns:56px 1fr auto;
+      gap:1.75rem; align-items:start;
     }
 
-    .rp-body {}
-    .rp-institution {
-      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--sage); margin-bottom: 0.45rem;
+    .pe-year { font-family:var(--serif); font-size:1rem; font-weight:300; color:var(--sage); padding-top:0.15rem; }
+
+    .pe-title { font-family:var(--serif); font-size:1.15rem; font-weight:400; color:var(--forest); line-height:1.3; margin-bottom:0.5rem; }
+    .pe-authors { font-size:0.82rem; color:var(--text); margin-bottom:0.3rem; }
+    .pe-authors strong { color:var(--forest); font-weight:500; }
+    .pe-venue { font-size:0.8rem; color:var(--muted); font-style:italic; }
+
+    .pe-badge {
+      font-size:0.63rem; font-weight:500; letter-spacing:0.08em;
+      text-transform:uppercase; padding:0.25rem 0.65rem;
+      border-radius:2px; white-space:nowrap; flex-shrink:0; margin-top:0.15rem;
     }
-    .rp-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--forest); line-height: 1.25; margin-bottom: 0.75rem; }
-    .rp-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.75; margin-bottom: 1rem; }
-    .rp-bullets { list-style: none; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
-    .rp-bullets li {
-      font-size: 0.85rem; color: var(--text); line-height: 1.55;
-      display: flex; align-items: flex-start; gap: 0.6rem;
+    .badge-q1  { background:rgba(107,143,113,0.15); color:var(--moss); }
+    .badge-pub { background:rgba(122,104,72,0.10); color:var(--earth); }
+    .badge-conf{ background:rgba(46,92,62,0.10); color:var(--moss); }
+
+    /* ── GIS PROJECTS ───────────────────────────────────── */
+    .gis-section { background:var(--parchment); padding:7rem 0; }
+
+    .gis-list { display:flex; flex-direction:column; gap:1.25rem; margin-top:3rem; }
+
+    .gis-card {
+      background:var(--cream);
+      border:1px solid var(--border);
+      border-radius:3px;
+      padding:2.25rem;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:2rem;
+      align-items:start;
+      position:relative; overflow:hidden;
+      transition:box-shadow 0.2s;
     }
-    .rp-bullets li::before { content: '→'; color: var(--sage); flex-shrink: 0; font-size: 0.8rem; margin-top: 0.1rem; }
+    .gis-card:hover { box-shadow:0 8px 32px rgba(26,58,42,0.07); }
 
-    .rp-side { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-end; min-width: 120px; }
-    .rp-status {
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 2px;
+    .gis-card::before {
+      content:''; position:absolute;
+      left:0; top:0; bottom:0; width:3px;
+      background:var(--sage); opacity:0;
+      transition:opacity 0.25s;
     }
-    .status-active { background: rgba(107,143,113,0.15); color: var(--moss); }
-    .status-complete { background: rgba(122,104,72,0.1); color: var(--earth); }
+    .gis-card:hover::before { opacity:1; }
 
-    /* publications */
-    .pubs-section { background: var(--parchment); padding: 6rem 0; }
-
-    .pub-card {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 2rem;
-      margin-bottom: 1.25rem;
-      position: relative;
-    }
-
-    .pub-type {
-      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem;
-    }
-
-    .pub-title-text {
-      font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
-      color: var(--forest); line-height: 1.3; margin-bottom: 0.6rem;
+    .gc-region {
+      font-size:0.68rem; font-weight:500; letter-spacing:0.1em;
+      text-transform:uppercase; color:var(--sage); margin-bottom:0.45rem;
     }
 
-    .pub-authors { font-size: 0.83rem; color: var(--text); margin-bottom: 0.3rem; }
-    .pub-authors strong { color: var(--forest); }
-    .pub-venue { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 1rem; }
+    .gc-title { font-family:var(--serif); font-size:1.25rem; font-weight:400; color:var(--forest); line-height:1.2; margin-bottom:0.75rem; }
 
-    .pub-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .pub-action-link {
-      font-size: 0.78rem; color: var(--sage); text-decoration: none;
-      display: flex; align-items: center; gap: 0.35rem;
-      transition: color 0.2s;
+    .gc-desc { font-size:0.87rem; color:var(--muted); line-height:1.72; margin-bottom:1rem; }
+
+    .gc-tools { display:flex; flex-wrap:wrap; gap:0.4rem; }
+
+    .gc-tool {
+      font-size:0.7rem; padding:0.2rem 0.6rem;
+      background:var(--parchment); border:1px solid var(--border);
+      border-radius:2px; color:var(--muted);
     }
-    .pub-action-link:hover { color: var(--forest); }
 
-    /* conference */
-    .conf-section { background: var(--cream); padding: 6rem 0; }
-    .conf-list { list-style: none; margin-top: 2.5rem; }
+    .gc-side { display:flex; flex-direction:column; gap:0.6rem; align-items:flex-end; }
+
+    .gc-status {
+      font-size:0.65rem; font-weight:500; letter-spacing:0.08em;
+      text-transform:uppercase; padding:0.3rem 0.7rem; border-radius:2px;
+    }
+    .status-pub  { background:rgba(107,143,113,0.15); color:var(--moss); }
+    .status-app  { background:rgba(122,104,72,0.10); color:var(--earth); }
+    .status-live { background:rgba(46,92,62,0.12); color:var(--forest); }
+
+    .gc-link {
+      font-size:0.78rem; color:var(--sage); text-decoration:none;
+      display:flex; align-items:center; gap:0.3rem;
+      transition:color 0.2s;
+    }
+    .gc-link:hover { color:var(--forest); }
+
+    /* ── CONFERENCES ────────────────────────────────────── */
+    .conf-section { background:var(--cream); padding:7rem 0; }
+
+    .conf-list { list-style:none; margin-top:2.5rem; }
+
     .conf-item {
-      border-top: 1px solid var(--border);
-      padding: 1.25rem 0;
-      display: grid;
-      grid-template-columns: 56px 1fr;
-      gap: 1.5rem;
+      display:grid; grid-template-columns:56px 1fr;
+      gap:1.5rem; padding:1.25rem 0;
+      border-top:1px solid var(--border);
     }
-    .conf-item:last-child { border-bottom: 1px solid var(--border); }
-    .conf-year { font-family: var(--serif); font-size: 0.95rem; color: var(--sage); }
-    .conf-title { font-size: 0.9rem; color: var(--text); }
-    .conf-event { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+    .conf-item:last-child { border-bottom:1px solid var(--border); }
 
-    @media (max-width: 780px) {
-      .rp-card { grid-template-columns: 1fr; gap: 1rem; }
-      .rp-side { align-items: flex-start; flex-direction: row; }
+    .ci-year { font-family:var(--serif); font-size:0.95rem; font-weight:300; color:var(--sage); }
+    .ci-title { font-size:0.9rem; color:var(--text); margin-bottom:0.2rem; }
+    .ci-event { font-size:0.78rem; color:var(--muted); }
+
+    @media (max-width:760px) {
+      .pub-entry { grid-template-columns:44px 1fr; }
+      .pe-badge { display:none; }
+      .gis-card { grid-template-columns:1fr; }
+      .gc-side { align-items:flex-start; flex-direction:row; }
     }
   </style>
 </head>
@@ -137,111 +133,75 @@
 <div class="page-hero">
   <div class="page-hero-inner">
     <div class="section-eyebrow fade">Research</div>
-    <h1 class="fade delay-1">Ecosystem science<br><em>with spatial precision</em></h1>
-    <p class="fade delay-2" style="margin-top:1.25rem; max-width:560px; font-size:1.02rem; color:var(--muted); line-height:1.8;">
-      My research applies GIS, remote sensing, and ecological modelling to understand
-      how landscapes can be managed for maximum biodiversity, carbon, and human benefit.
-    </p>
+    <h1 class="fade delay-1">Publications &amp;<br><em>spatial science</em></h1>
   </div>
 </div>
 
-<!-- RESEARCH PROJECTS -->
+<!-- PUBLICATIONS -->
 <section>
   <div class="page-wrap">
-    <div class="section-eyebrow fade">Projects</div>
-    <h2 class="fade">Research <em>portfolio</em></h2>
+    <div class="section-eyebrow fade">Output</div>
+    <h2 class="fade">Publications</h2>
 
-    <div class="research-list" style="margin-top: 3rem;">
+    <div style="margin-top:3rem;">
 
-      <div class="rp-card fade">
-        <div class="rp-year">2025–</div>
-        <div class="rp-body">
-          <div class="rp-institution">University of Virginia · PhD Research</div>
-          <div class="rp-title">Prioritization &amp; Optimization Approaches for Ecosystem Service Provision in Urban Green Spaces</div>
-          <div class="rp-desc">A systematic investigation into how cities can strategically site and design green spaces to maximise stacked ecosystem services — cooling, carbon, biodiversity, and wellbeing — using spatial decision-support models.</div>
-          <ul class="rp-bullets">
-            <li>Conducted a systematic literature review assessing current green space siting practices across US cities</li>
-            <li>Analysed decision-support tools, spatial models, and data inputs guiding green space placement</li>
-            <li>Developing a framework to assess and compare ecosystem services across alternative siting scenarios</li>
-          </ul>
-          <div class="tags">
-            <span class="tag">Urban Ecology</span>
-            <span class="tag">Ecosystem Services</span>
-            <span class="tag">GIS Modelling</span>
-            <span class="tag">Systematic Review</span>
+      <!-- Journal articles -->
+      <div class="pub-block">
+        <div class="pub-type-heading fade">Journal Articles</div>
+
+        <div class="pub-entry fade">
+          <div class="pe-year">2024</div>
+          <div>
+            <div class="pe-title">Methodology for Selecting Potential CO₂ Sink in Macaronesia Island: The Case of Gran Canaria</div>
+            <div class="pe-authors"><strong>Oladipo, S.F.</strong>, Ruiz, L.C.Q., &amp; Caparros-Santiago, J.A.</div>
+            <div class="pe-venue">Trees, Forests and People, 100698</div>
           </div>
+          <span class="pe-badge badge-q1">Q1</span>
         </div>
-        <div class="rp-side">
-          <span class="rp-status status-active">Active · PhD</span>
+
+        <div class="pub-entry fade delay-1">
+          <div class="pe-year">2024</div>
+          <div>
+            <div class="pe-title">Assessment of Geospatial Distribution of Sawmills in Ife-East Local Government Area, Osun State, Nigeria</div>
+            <div class="pe-authors"><strong>Oladipo, S.F.</strong>, Oyerinde, O.V.</div>
+            <div class="pe-venue">Journal of Applied Sciences and Environmental Management, 3277–3281</div>
+          </div>
+          <span class="pe-badge badge-pub">Published</span>
+        </div>
+
+        <div class="pub-entry fade delay-2">
+          <div class="pe-year">2023</div>
+          <div>
+            <div class="pe-title">Biofuels as a Key Renewable Energy Source: A Review of Life Cycle Assessment Studies in South Africa</div>
+            <div class="pe-authors">Echendu, A.J., Hampo, C.C., Ojo, D.O., Oni, O.O., <strong>Oladipo, S.F.</strong>, Olatunde, E.D., et al.</div>
+            <div class="pe-venue">Review article · 2023</div>
+          </div>
+          <span class="pe-badge badge-pub">Published</span>
+        </div>
+
+        <div class="pub-entry fade">
+          <div class="pe-year">2022</div>
+          <div>
+            <div class="pe-title">Life Cycle Impact Assessment of Renewable Energies in North Africa</div>
+            <div class="pe-authors">Hampo, C.C., Ojo, D.O., Oni, O.O., <strong>Oladipo, S.F.</strong>, Olatunde, E.D., Echendu, A.J., et al.</div>
+            <div class="pe-venue">2022</div>
+          </div>
+          <span class="pe-badge badge-pub">Published</span>
         </div>
       </div>
 
-      <div class="rp-card fade delay-1">
-        <div class="rp-year">2024</div>
-        <div class="rp-body">
-          <div class="rp-institution">University of Las Palmas &amp; Groningen · MSc Thesis</div>
-          <div class="rp-title">Methodology for Selecting Potential CO₂ Sink in Macaronesia Island: The Case of Gran Canaria</div>
-          <div class="rp-desc">Developed a reproducible GIS-based methodology for identifying optimal afforestation and reforestation sites in Macaronesian island landscapes, with carbon sequestration and ecological suitability as primary criteria. Published in a Q1 journal within 3 months of thesis completion.</div>
-          <ul class="rp-bullets">
-            <li>Conducted land suitability analysis to identify optimal locations for green space and carbon sinks</li>
-            <li>Analysed greenhouse gas emissions across all 8 Canary Islands, identifying three major emission clusters</li>
-            <li>Published peer-reviewed results in <em>Trees, Forests and People</em> (Q1 Journal)</li>
-          </ul>
-          <div class="tags">
-            <span class="tag">Land Suitability</span>
-            <span class="tag">Carbon Sequestration</span>
-            <span class="tag">Gran Canaria</span>
-            <span class="tag">Published</span>
-          </div>
-        </div>
-        <div class="rp-side">
-          <span class="rp-status status-complete">Published</span>
-        </div>
-      </div>
+      <!-- Conference papers -->
+      <div class="pub-block">
+        <div class="pub-type-heading fade">Conference Papers</div>
 
-      <div class="rp-card fade delay-2">
-        <div class="rp-year">2024</div>
-        <div class="rp-body">
-          <div class="rp-institution">University of Groningen &amp; Learning Hub Friesland</div>
-          <div class="rp-title">Integrating Backcasting Methods in Island Schools: Sustainable Transport</div>
-          <div class="rp-desc">An interdisciplinary educational research project embedding sustainability thinking — specifically backcasting methodology — into school curricula in island communities across Greece, Iceland, and the Netherlands.</div>
-          <ul class="rp-bullets">
-            <li>Designed and facilitated focus group discussions with secondary school students in Astypalaia, Hrisey, and Vlieland</li>
-            <li>Analysed focus group transcripts using Atlas.ti to extract thematic patterns</li>
-            <li>Translated empirical insights into evidence-based curriculum recommendations</li>
-          </ul>
-          <div class="tags">
-            <span class="tag">Island Sustainability</span>
-            <span class="tag">Backcasting</span>
-            <span class="tag">Qualitative Research</span>
-            <span class="tag">Education</span>
+        <div class="pub-entry fade">
+          <div class="pe-year">2023</div>
+          <div>
+            <div class="pe-title">Phytotoponyms as a Tool for Reconstructing Lost Plant Communities in Anaga, Tenerife, Canary Islands, Spain</div>
+            <div class="pe-authors">Marrero Rodríguez, N., García Romero, L.A., &amp; <strong>Oladipo, S.F.</strong></div>
+            <div class="pe-venue">XVIII Congress of the Spanish Association of Geography</div>
           </div>
-        </div>
-        <div class="rp-side">
-          <span class="rp-status status-complete">Complete</span>
-        </div>
-      </div>
-
-      <div class="rp-card fade">
-        <div class="rp-year">2019</div>
-        <div class="rp-body">
-          <div class="rp-institution">Federal University of Technology Akure · BSc Thesis</div>
-          <div class="rp-title">Assessment of Geospatial Distribution of Sawmills in Ife-East LGA, Osun State, Nigeria</div>
-          <div class="rp-desc">A spatial investigation into informal sawmill operations in southwestern Nigeria, examining geographic clustering, proximity to forest reserves, and implications for deforestation management policy.</div>
-          <ul class="rp-bullets">
-            <li>Designed survey instruments and conducted field surveys across Ife-East Local Government Area</li>
-            <li>Analysed and mapped sawmill spatial distribution using QGIS, ArcMap, and Google Earth Engine</li>
-            <li>Developed feasible policy recommendations subsequently published in a peer-reviewed journal</li>
-          </ul>
-          <div class="tags">
-            <span class="tag">Spatial Analysis</span>
-            <span class="tag">Nigeria</span>
-            <span class="tag">Forestry</span>
-            <span class="tag">Published</span>
-          </div>
-        </div>
-        <div class="rp-side">
-          <span class="rp-status status-complete">Published</span>
+          <span class="pe-badge badge-conf">Conference</span>
         </div>
       </div>
 
@@ -249,57 +209,102 @@
   </div>
 </section>
 
-<!-- PUBLICATIONS -->
-<section class="pubs-section">
+<!-- GIS PROJECTS -->
+<section class="gis-section" id="gis">
   <div class="page-wrap">
-    <div class="section-eyebrow fade">Output</div>
-    <h2 class="fade">Publications</h2>
+    <div class="section-eyebrow fade">Spatial Science</div>
+    <h2 class="fade">GIS &amp; mapping <em>projects</em></h2>
 
-    <div style="margin-top: 2.5rem;">
-      <h3 style="font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem;" class="fade">Journal Articles</h3>
+    <div class="gis-list">
 
-      <div class="pub-card fade">
-        <div class="pub-type">Journal Article · Q1</div>
-        <div class="pub-title-text">Methodology for Selecting Potential CO₂ Sink in Macaronesia Island: The Case of Gran Canaria</div>
-        <div class="pub-authors"><strong>Oladipo, S.F.</strong>, Ruiz, L.C.Q., &amp; Caparros-Santiago, J.A.</div>
-        <div class="pub-venue">Trees, Forests and People, 100698 · 2024</div>
-        <div class="pub-actions">
-          <a href="#" class="pub-action-link">↗ View paper</a>
+      <div class="gis-card fade">
+        <div>
+          <div class="gc-region">Gran Canaria, Spain</div>
+          <div class="gc-title">CO₂ Sink Suitability Analysis — Macaronesian Islands</div>
+          <div class="gc-desc">Multi-criteria GIS land suitability model identifying optimal afforestation and reforestation sites across Gran Canaria, integrating soil, slope, climate, and land cover data. Analysed greenhouse gas emissions across all 8 Canary Islands, identifying three major emission clusters. Results published in a Q1 journal.</div>
+          <div class="gc-tools">
+            <span class="gc-tool">ArcGIS Pro</span>
+            <span class="gc-tool">QGIS</span>
+            <span class="gc-tool">Weighted Overlay</span>
+            <span class="gc-tool">Raster Analysis</span>
+          </div>
+        </div>
+        <div class="gc-side">
+          <span class="gc-status status-pub">Published</span>
+          <a href="https://storymaps.arcgis.com/stories/c3c36c5cf6974f988dfd975d9ef1f989" target="_blank" class="gc-link">StoryMaps ↗</a>
         </div>
       </div>
 
-      <div class="pub-card fade delay-1">
-        <div class="pub-type">Journal Article</div>
-        <div class="pub-title-text">Assessment of Geospatial Distribution of Sawmills in Ife-East Local Government Area, Osun State, Nigeria</div>
-        <div class="pub-authors"><strong>Oladipo, S.F.</strong>, Oyerinde, O.V.</div>
-        <div class="pub-venue">Journal of Applied Sciences and Environmental Management, 3277–3281 · 2024</div>
-        <div class="pub-actions">
-          <a href="#" class="pub-action-link">↗ View paper</a>
+      <div class="gis-card fade delay-1">
+        <div>
+          <div class="gc-region">Osun State, Nigeria</div>
+          <div class="gc-title">Geospatial Distribution of Sawmills — Ife-East LGA</div>
+          <div class="gc-desc">Spatial mapping and analysis of informal sawmill locations in Ife-East Local Government Area. Identified clustering patterns and proximity to forest reserves to support deforestation management policy. Field survey data integrated with GIS modelling.</div>
+          <div class="gc-tools">
+            <span class="gc-tool">QGIS</span>
+            <span class="gc-tool">ArcMap</span>
+            <span class="gc-tool">Google Earth Engine</span>
+            <span class="gc-tool">Field Survey</span>
+          </div>
+        </div>
+        <div class="gc-side">
+          <span class="gc-status status-pub">Published</span>
         </div>
       </div>
 
-      <div class="pub-card fade delay-2">
-        <div class="pub-type">Review Article</div>
-        <div class="pub-title-text">Biofuels as a Key Renewable Energy Source: A Review of Life Cycle Assessment Studies in South Africa</div>
-        <div class="pub-authors">Echendu, A.J., Hampo, C.C., Ojo, D.O., Oni, O.O., <strong>Oladipo, S.F.</strong>, et al.</div>
-        <div class="pub-venue">2023</div>
+      <div class="gis-card fade delay-2">
+        <div>
+          <div class="gc-region">Anaga Massif, Tenerife</div>
+          <div class="gc-title">Phytotoponym Mapping — Historical Plant Community Reconstruction</div>
+          <div class="gc-desc">Spatial analysis of phytotoponyms (plant place names) in Anaga Massif as proxies for reconstructing historical vegetation distributions and lost plant communities. Contributed to a conference paper at the XVIII Spanish Geography Congress.</div>
+          <div class="gc-tools">
+            <span class="gc-tool">ArcGIS Pro</span>
+            <span class="gc-tool">Spatial Statistics</span>
+            <span class="gc-tool">Historical Maps</span>
+          </div>
+        </div>
+        <div class="gc-side">
+          <span class="gc-status status-app">Conference</span>
+        </div>
       </div>
 
-      <div class="pub-card fade">
-        <div class="pub-type">Review Article</div>
-        <div class="pub-title-text">Life Cycle Impact Assessment of Renewable Energies in North Africa</div>
-        <div class="pub-authors">Hampo, C.C., Ojo, D.O., Oni, O.O., <strong>Oladipo, S.F.</strong>, et al.</div>
-        <div class="pub-venue">2022</div>
+      <div class="gis-card fade">
+        <div>
+          <div class="gc-region">Groningen, Netherlands · WWF</div>
+          <div class="gc-title">Urban Green Space Mapping — City of Groningen</div>
+          <div class="gc-desc">Collaborated with WWF Netherlands and the municipality of Groningen to map existing urban green spaces, assess their ecosystem service provision potential, and develop a spatially informed plan for strategic green infrastructure expansion.</div>
+          <div class="gc-tools">
+            <span class="gc-tool">QGIS</span>
+            <span class="gc-tool">OpenStreetMap</span>
+            <span class="gc-tool">Stakeholder Mapping</span>
+          </div>
+        </div>
+        <div class="gc-side">
+          <span class="gc-status status-app">Applied</span>
+        </div>
       </div>
 
-      <h3 style="font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 2.5rem 0 1.25rem;" class="fade">Conference Papers</h3>
-
-      <div class="pub-card fade delay-1">
-        <div class="pub-type">Conference Paper</div>
-        <div class="pub-title-text">Phytotoponyms as a Tool for Reconstructing Lost Plant Communities in Anaga, Tenerife, Canary Islands, Spain</div>
-        <div class="pub-authors">Marrero Rodríguez, N., García Romero, L.A., &amp; <strong>Oladipo, S.F.</strong></div>
-        <div class="pub-venue">XVIII Congress of the Spanish Association of Geography · 2023</div>
+      <div class="gis-card fade delay-1">
+        <div>
+          <div class="gc-region">Northern Nigeria · CESRA</div>
+          <div class="gc-title">Deforestation &amp; Forest Degradation Mapping</div>
+          <div class="gc-desc">Developed detailed maps of deforestation and forest degradation across Northern Nigeria during a GIS Specialist internship at the Centre for Space Research and Application. Digitised forest reserve boundaries and created photogrammetry-based change detection reports for national monitoring.</div>
+          <div class="gc-tools">
+            <span class="gc-tool">ArcGIS</span>
+            <span class="gc-tool">QGIS</span>
+            <span class="gc-tool">Photogrammetry</span>
+            <span class="gc-tool">Change Detection</span>
+          </div>
+        </div>
+        <div class="gc-side">
+          <span class="gc-status status-app">Applied</span>
+        </div>
       </div>
+
+    </div>
+
+    <div style="margin-top:2.5rem;" class="fade">
+      <a href="https://storymaps.arcgis.com/stories/c3c36c5cf6974f988dfd975d9ef1f989" target="_blank" class="btn btn-outline">View interactive portfolio on ArcGIS StoryMaps ↗</a>
     </div>
   </div>
 </section>
@@ -310,15 +315,15 @@
     <div class="section-eyebrow fade">Engagement</div>
     <h2 class="fade">Conferences &amp; <em>events</em></h2>
     <ul class="conf-list">
-      <li class="conf-item fade"><div class="conf-year">2024</div><div><div class="conf-title">2024 ESRI User Conference</div><div class="conf-event">ESRI · San Diego, USA</div></div></li>
-      <li class="conf-item fade delay-1"><div class="conf-year">2024</div><div><div class="conf-title">PolyU International Research Summer School</div><div class="conf-event">Hong Kong Polytechnic University, Hong Kong</div></div></li>
-      <li class="conf-item fade delay-2"><div class="conf-year">2024</div><div><div class="conf-title">Delegate, World Bank Youth Summit</div><div class="conf-event">World Bank Group · 2024</div></div></li>
-      <li class="conf-item fade"><div class="conf-year">2024</div><div><div class="conf-title">Clean Energy for EU Islands Forum</div><div class="conf-event">Pantelleria, Italy — Travel Grant Recipient</div></div></li>
-      <li class="conf-item fade delay-1"><div class="conf-year">2023</div><div><div class="conf-title">Climate Adaptation Changemakers School</div><div class="conf-event">Global Center on Adaptation, the Netherlands</div></div></li>
-      <li class="conf-item fade delay-2"><div class="conf-year">2023</div><div><div class="conf-title">1st ISLANDS Students Conference</div><div class="conf-event">University of Groningen, the Netherlands</div></div></li>
-      <li class="conf-item fade"><div class="conf-year">2023</div><div><div class="conf-title">Islands as Laboratories for Sustainability Winter School</div><div class="conf-event">University of Las Palmas, Gran Canaria, Spain</div></div></li>
-      <li class="conf-item fade delay-1"><div class="conf-year">2021</div><div><div class="conf-title">20th Commonwealth Forestry Conference</div><div class="conf-event">University of British Columbia, Canada</div></div></li>
-      <li class="conf-item fade delay-2"><div class="conf-year">2016</div><div><div class="conf-title">Northern Africa Regional Meeting</div><div class="conf-event">International Forestry Students Association</div></div></li>
+      <li class="conf-item fade"><div class="ci-year">2024</div><div><div class="ci-title">2024 ESRI User Conference</div><div class="ci-event">ESRI · San Diego, USA</div></div></li>
+      <li class="conf-item fade delay-1"><div class="ci-year">2024</div><div><div class="ci-title">PolyU International Research Summer School</div><div class="ci-event">Hong Kong Polytechnic University, Hong Kong</div></div></li>
+      <li class="conf-item fade delay-2"><div class="ci-year">2024</div><div><div class="ci-title">Delegate, World Bank Youth Summit</div><div class="ci-event">World Bank Group</div></div></li>
+      <li class="conf-item fade"><div class="ci-year">2024</div><div><div class="ci-title">Clean Energy for EU Islands Forum</div><div class="ci-event">Pantelleria, Italy — Travel Grant Recipient</div></div></li>
+      <li class="conf-item fade delay-1"><div class="ci-year">2023</div><div><div class="ci-title">Climate Adaptation Changemakers School</div><div class="ci-event">Global Center on Adaptation, the Netherlands</div></div></li>
+      <li class="conf-item fade delay-2"><div class="ci-year">2023</div><div><div class="ci-title">1st ISLANDS Students Conference</div><div class="ci-event">University of Groningen, the Netherlands</div></div></li>
+      <li class="conf-item fade"><div class="ci-year">2023</div><div><div class="ci-title">Islands as Laboratories for Sustainability Winter School</div><div class="ci-event">University of Las Palmas, Gran Canaria, Spain</div></div></li>
+      <li class="conf-item fade delay-1"><div class="ci-year">2021</div><div><div class="ci-title">20th Commonwealth Forestry Conference</div><div class="ci-event">University of British Columbia, Canada</div></div></li>
+      <li class="conf-item fade delay-2"><div class="ci-year">2016</div><div><div class="ci-title">Northern Africa Regional Meeting</div><div class="ci-event">International Forestry Students Association</div></div></li>
     </ul>
   </div>
 </section>
